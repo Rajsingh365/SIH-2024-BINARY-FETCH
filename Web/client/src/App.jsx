@@ -1,10 +1,16 @@
 import React from "react";
-import { TempButtons } from "./pages/Supervisor/TempButtons";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
     <div>
-      <TempButtons />
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
 };
