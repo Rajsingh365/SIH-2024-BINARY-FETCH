@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { TempButtons } from "./pages/Supervisor/TempButtons";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div>
+      <TempButtons />
+    </div>
+  );
+};
 
-export default App
+export default App;
