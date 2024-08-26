@@ -1,59 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
-
-const Navbar = () => {
+import React from 'react'
+import { Link } from 'react-router-dom'
+const AdminNavbar = () => {
   const authUser=true;
   const loading=false;
   const handleLogout=(e)=>{
     e.preventDefault()
     // logout()
   }
-
   return (
-
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-primary text-primary-content">
       <div className="flex-1">
         <Link to={"/"} className="btn btn-ghost text-xl">
           daisyUI
         </Link>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link to={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link to={"/report-crime"}>Report a Crime</Link>
-          </li>
-          <li>
-            <Link to={"/police-location"}>Police Station</Link>
-          </li>
-          <li>
-            <Link to={"/crime-map"}>Crime map</Link>
-          </li>
 
-          <li>
-            <details>
-              <summary>More</summary>
-              <ul className="bg-base-100 rounded-t-none p-2">
-                <li>
-                  <Link to={"/faq"}>FAQ</Link>
-                </li>
-                <li>
-                  <Link to={"/resources"}>Resources</Link>
-                </li>
-                <li>
-                  <Link to={"/about-us"}>About us</Link>
-                </li>
-                <li>
-                  <Link to={"/feedback-form"}>Feedback Form</Link>
-                </li>
-              </ul>
-            </details>
-          </li>
-        </ul>
-      </div>
       {authUser&&<div className="flex-none">
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -122,7 +83,7 @@ const Navbar = () => {
         </div>
       </div>}
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default AdminNavbar
