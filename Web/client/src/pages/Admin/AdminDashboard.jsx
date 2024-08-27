@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 
 const AdminDashboard = () => {
   return (
-    <div>AdminDashboard</div>
-  )
-}
+    <>
+      <Navbar />
+      <div>AdminDashboard</div>
+      <Footer />
+    </>
+  );
+};
 
-export default AdminDashboard
+export default AdminDashboard;
