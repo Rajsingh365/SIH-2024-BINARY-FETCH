@@ -26,10 +26,10 @@ const VisitorsInfo = () => {
   };
 
   return (
-    <div className="bg-[#21222D] py-10 rounded-lg mx-5 w-[75%] ">
+    <div className="bg-[#21222D] py-10 rounded-lg mx-5 w-[90%] ">
       <h2 className="text-3xl font-semibold ml-10 pb-5">Visitors Summary</h2>
       <div className="flex items-center justify-center p-5 text-3xl text-center">
-        <Line data={data} />
+        <Line data={data} height={50} width={''} />
       </div>
     </div>
   );  

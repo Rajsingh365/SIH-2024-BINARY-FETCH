@@ -1,6 +1,11 @@
 import React from "react";
-import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
+import AdminDashboard from "./pages/Admin/AdminDashboardContent.jsx";
 import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Admin from "./pages/Admin/Admin.jsx";
+import Users from "./Dashboards/Admin/Users/Users.jsx";
+import Therapists from "./Dashboards/Admin/Therapists/Therapists.jsx";
+import Supervisors from "./Dashboards/Admin/Supervisors/Supervisors.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,11 +17,22 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <AdminDashboard />,
-          },
-          {
-            path: "workspace",
-            element: <h1>Admin Workspace</h1>,
+            element: <Admin />,
+            children: [
+              {
+                path: "users",
+                element: <Users />,
+              },
+              {
+                path: "therapists",
+                element: <Therapists/>,
+              },
+              { 
+                path: "supervisors",
+                element: <Supervisors/>,
+              },
+            ],
+
           },
         ],
       },
