@@ -1,6 +1,8 @@
 import React from "react";
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
 import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { FeedbackForm, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout } from "./pages/Supervisor";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +31,25 @@ const router = createBrowserRouter([
           },
           {
             path: "workspace",
-            element: <h1>Supervisor Workspace</h1>,
+            element: <WorkspaceLayout />,
+            children: [
+              {
+                path: "progress-report",
+                element: <ProgressReportList />,
+              },
+              {
+                path: "sessions",
+                element: <SessionList />,
+              },
+              {
+                path: "therapy-plans",
+                element: <TherapyPlanList />,
+              },
+              {
+                path: "clinical-rating",
+                element: <FeedbackForm />,
+              },
+            ],
           },
         ],
       },
