@@ -8,11 +8,11 @@ import AdminNavbar from "./components/AdminNavbar.jsx";
 
 
 const App = () => {
-  const isAdmin = true;
+  const isAdmin = false;
   return (
     <BrowserRouter>
       {isAdmin?"":<Navbar />}
-      {isAdmin?<AdminNavbar/>:""} 
+      {isAdmin?<AdminNavbar />:""} 
       <Routes>
         <Route path="/" element={<h1>Hello</h1>} />
         <Route path="/supervisor/clinical-rating" element={<FeedbackForm />} />

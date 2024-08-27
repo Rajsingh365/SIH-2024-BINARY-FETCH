@@ -1,4 +1,4 @@
-import React from 'react';
+import { Chart, Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,51 +7,32 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Filler,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import faker from 'faker';
+} from "chart.js";
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-  Legend
-);
+const VisitorsInfo = () => {
+  const data = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    datasets: [
+      {
+        label: "New Visitors",
+        data: [10, 900, 2000, 2500, 4500, 4600],
+        fill: false,
+        backgroundColor: "#CB964D",
+        borderColor: "#CB964D",
+      },
+    ],
+  };
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
+  return (
+    <div className="bg-[#21222D] py-10 rounded-lg mx-5 w-[75%] ">
+      <h2 className="text-3xl font-semibold ml-10 pb-5">Visitors Summary</h2>
+      <div className="flex items-center justify-center p-5 text-3xl text-center">
+        <Line data={data} />
+      </div>
+    </div>
+  );  
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      fill: true,
-      label: 'Dataset 2',
-      data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-
-export function App() {
-  return <Line options={options} data={data} />;
-}
+export default VisitorsInfo;
