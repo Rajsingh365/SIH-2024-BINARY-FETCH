@@ -13,8 +13,8 @@ const Header = () => {
 
   const updateTime = () => {
     const today = new Date();
-    const date = today.getDate()+ "/" + (today.getMonth() + 1) +"/"+ today.getFullYear()   ;
-    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const date = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();
+    const time = today.getHours().toString().padStart(2, '0') + ":" + today.getMinutes().toString().padStart(2, '0') + ":" + today.getSeconds().toString().padStart(2, '0');
     const dateTime = date + " " + time;
     setDateTime(dateTime);
   };

@@ -9,7 +9,7 @@ const TherapistInfo = () => {
       <div className=" gap-x-5 flex items-center justify-center p-5 text-3xl text-center ">
         <div className="flex flex-col gap-y-3 bg-[#171821] rounded-lg justify-center items-center w-72 p-2 h-36" >
           <div className="stat place-items-center ">
-            <div class="stat-figure text-secondary ">
+            <div className="stat-figure text-secondary ">
               <FaUserDoctor className="text-[#CB964D] " />
             </div>
             <div className="stat-title">Total Therapist</div>

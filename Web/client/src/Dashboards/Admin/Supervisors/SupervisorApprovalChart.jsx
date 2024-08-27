@@ -77,8 +77,6 @@ const SupervisorApprovalChart = () => {
   );
 };
 
-
-
 export default SupervisorApprovalChart
 
 
