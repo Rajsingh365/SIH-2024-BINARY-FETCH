@@ -1,30 +1,44 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { FeedbackForm, ProgressReportList, SessionList, TherapyPlanList } from "./pages/Supervisor";
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AdminNavbar from "./components/AdminNavbar.jsx";
+import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/admin",
+        children: [
+          {
+            path: "dashboard",
+            element: <AdminDashboard />,
+          },
+          {
+            path: "workspace",
+            element: <h1>Admin Workspace</h1>,
+          },
+        ],
+      },
+      {
+        path: "/supervisor",
+        children: [
+          {
+            path: "dashboard",
+            element: <h1>Supervisor Dashboard</h1>,
+          },
+          {
+            path: "workspace",
+            element: <h1>Supervisor Workspace</h1>,
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 const App = () => {
-  const isAdmin = false;
-  return (
-    <BrowserRouter>
-      {isAdmin?"":<Navbar />}
-      {isAdmin?<AdminNavbar />:""} 
-      <Routes>
-        <Route path="/" element={<h1>Hello</h1>} />
-        <Route path="/supervisor/clinical-rating" element={<FeedbackForm />} />
-        <Route path="/supervisor/progress-report-list" element={<ProgressReportList />} />  
-        <Route path="/supervisor/sessions-list" element={<SessionList />} />
-        <Route path="/supervisor/therapy-plan-list" element={<TherapyPlanList />} />
-        
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 };
 
 export default App;
