@@ -2,7 +2,7 @@ import React from "react";
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
 import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { FeedbackForm, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout } from "./pages/Supervisor";
+import { ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout } from "./pages/Supervisor";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "clinical-rating",
-                element: <FeedbackForm />,
+                element: <ClinicalRatings />,
               },
             ],
           },

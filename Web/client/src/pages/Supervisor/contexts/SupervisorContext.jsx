@@ -12,6 +12,8 @@ export const SupervisorContextProvider = ({ children }) => {
 
   const [sessions, setSessions] = useState([]);
 
+  const [progressReports, setProgressReports] = useState([]);
+
   const fetchTherapyPlans = async () => {
     const response = await axios.get("http://localhost:8080/therapyPlans");
 
@@ -75,8 +77,33 @@ export const SupervisorContextProvider = ({ children }) => {
     setSessions(notes);
   };
 
+  const fetchProgressReports = async () => {
+    const response = await axios.get("http://localhost:8080/progressReports");
+
+    let reports = response.data;
+
+    if (time == "descending") {
+      reports = reports.sort((a, b) => {
+        const dateA = new Date(a.reportDate);
+        const dateB = new Date(b.reportDate);
+
+        return dateA - dateB;
+      });
+    } else if (time == "ascending") {
+      reports = reports.sort((a, b) => {
+        const dateA = new Date(a.reportDate);
+        const dateB = new Date(b.reportDate);
+
+        return dateB - dateA;
+      });
+    }
+
+    setProgressReports(reports);
+  };
+
   useEffect(() => {
     fetchSessionNotes();
+    fetchProgressReports();
   }, [time]);
 
   return (
@@ -92,6 +119,7 @@ export const SupervisorContextProvider = ({ children }) => {
         isNewPlans,
         setIsNewPlans,
         sessions,
+        progressReports,
       }}
     >
       {children}
