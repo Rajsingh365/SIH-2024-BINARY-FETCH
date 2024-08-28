@@ -112,19 +112,19 @@ const optionLine={
 }
 const SessionNotesReview = () => {
   return (
-    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-[90%] text-white">
+    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-full text-white">
       <h2 className="text-2xl font-bold mb-4">Session Notes Review</h2>
 
       {/* Bar Chart */}
       <div className="bg-[#2A2B3D] shadow-md rounded p-4 mb-8">
         <h3 className="text-xl font-bold mb-4">Session Notes Submissions</h3>
-        <Bar data={barChartData} options={optionBar} />
+        <Bar data={barChartData} options={optionBar} height={'50px'}/>
       </div>
 
       {/* Line Graph */}
       <div className="bg-[#2A2B3D] shadow-md rounded p-4">
         <h3 className="text-xl font-bold mb-4">Reviewed vs Pending Notes</h3>
-        <Line data={lineChartData} options={optionLine} />
+        <Line data={lineChartData} options={optionLine} height={'50px'}/>
       </div>
     </div>
   );

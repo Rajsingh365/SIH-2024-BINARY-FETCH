@@ -31,7 +31,7 @@ const countCasesPerTherapist = () => {
 
 const CasesPerTherapist = () => {
   return (
-    <div className="bg-gray-900 text-white p-6 py-10 rounded-lg mx-5 w-[90%]">
+    <div className="bg-gray-900 text-white p-6 py-10 rounded-lg mx-5 w-full">
       <h2 className="text-2xl font-bold mb-4">Therapy Cases Overview</h2>
 
       {/* Data Table */}
@@ -92,6 +92,8 @@ const CasesPerTherapist = () => {
               },
             },
           }}
+
+          height='50px'
         />
       </div>
     </div>

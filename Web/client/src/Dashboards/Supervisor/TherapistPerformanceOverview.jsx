@@ -80,7 +80,7 @@ const pieData = {
 
 const TherapistPerformanceOverview = () => {
   return (
-    <div className="bg-[#1F1F1F] p-6 py-10 rounded-lg mx-5 w-[90%]">
+    <div className="bg-[#1F1F1F] p-6 py-10 rounded-lg mx-5 w-[100%]">
       <h2 className="text-2xl font-bold mb-4 text-white">
         Therapist Performance Overview
       </h2>
@@ -130,6 +130,7 @@ const TherapistPerformanceOverview = () => {
               },
             },
           }}
+          height={'50px'}
         />
       </div>
 
@@ -139,7 +140,7 @@ const TherapistPerformanceOverview = () => {
           Distribution of Cases by Therapist
         </h3>
         <div  className="flex items-center justify-center">
-          <Pie
+          <Pie style={{height:'200px',width:'200px'}}
             data={pieData}
             options={{
               responsive: true,

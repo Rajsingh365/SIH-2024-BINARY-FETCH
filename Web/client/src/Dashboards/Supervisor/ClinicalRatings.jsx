@@ -71,6 +71,7 @@ const ClinicalRatings = () => {
         },
       },
     },
+    responsive: true,
   };
 
   const optionsBar = {
@@ -97,19 +98,19 @@ const ClinicalRatings = () => {
   };
 
   return (
-    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-[90%]">
+    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-[100%]">
       <h2 className="text-2xl font-bold mb-4 text-white">Clinical Ratings Overview</h2>
 
       {/* Radar Chart */}
-      <div className="bg-[#2c2f36] p-4 rounded-lg mb-8">
+      {/* <div className="bg-[#2c2f36] p-4 rounded-lg mb-8">
         <h3 className="text-xl font-bold mb-4 text-white">Performance by Aspect</h3>
         <Radar data={radarData} options={optionsRadar} />
-      </div>
+      </div> */}
 
       {/* Bar Graph */}
       <div className="bg-[#2c2f36] p-4 rounded-lg">
         <h3 className="text-xl font-bold mb-4 text-white">Distribution of Ratings</h3>
-        <Bar data={barData} options={optionsBar} />
+        <Bar data={barData} options={optionsBar} height={'40px'} />
       </div>
     </div>
   );
