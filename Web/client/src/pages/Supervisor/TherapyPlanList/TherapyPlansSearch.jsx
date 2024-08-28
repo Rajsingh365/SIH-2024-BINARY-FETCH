@@ -1,15 +1,15 @@
 import { useSupervisorContext } from "../contexts/SupervisorContext";
 
 export const TherapyPlansSearch = () => {
-  const { searchTerm, setSearchTerm, priority, setPriority, time, setTime } = useSupervisorContext();
+  const { planSearchTerm, setPlanSearchTerm, priority, setPriority, time, setTime } = useSupervisorContext();
 
   return (
     <>
       <div className="sv-search-form text-xl p-2 flex">
         <input
           type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={planSearchTerm}
+          onChange={(e) => setPlanSearchTerm(e.target.value)}
           className="bg-gray-600 w-[300px] p-1 focus:outline-none"
           placeholder="Patient or therapist's name..."
         />

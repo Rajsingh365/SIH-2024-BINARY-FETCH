@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { TherapyPlansSearch } from "./components/TherapyPlansSearch";
-import { TherapyPlanCardList } from "./components/TherapyPlanCardList";
-import { useSupervisorContext } from "./contexts/SupervisorContext";
+import { TherapyPlansSearch } from "./TherapyPlansSearch";
+import { TherapyPlanCardList } from "./TherapyPlanCardList";
+import { useSupervisorContext } from "../contexts/SupervisorContext";
 
 export const TherapyPlanList = () => {
   const { setIsNewPlans, isNewPlans } = useSupervisorContext();
