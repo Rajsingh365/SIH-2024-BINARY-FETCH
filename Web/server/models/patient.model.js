@@ -10,6 +10,10 @@ const patientSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    condition: {
+      type: String,
+      required: true
+    },
     contact_details: {
       phone: {
         type: String,

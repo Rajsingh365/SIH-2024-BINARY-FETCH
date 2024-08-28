@@ -28,6 +28,14 @@ const therapyPlanSchema = new mongoose.Schema({
     enum: ["pending","approved","rejected"],
     default: "pending"
   },
+  priority: {
+    type: String,
+    required: true
+  },
+  activities: {
+    type: String,
+    required: true
+  }
 
 }, { timestamps: true });
 
