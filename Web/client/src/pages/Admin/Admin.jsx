@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaUsers } from "react-icons/fa6";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdOutlineSupervisedUserCircle, MdSupervisorAccount } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import AdminDashboardContent from './AdminDashboardContent';
+import { useNavigate } from 'react-router-dom';
 const Admin = () => {
   const [currentItem, setCurrentItem]=useState("Users")
+  const navigate = useNavigate()
+  useEffect(()=>{
+    navigate('/admin/dashboard/users')
+  },[])
   const handleItemClick=(item)=>{
     setCurrentItem(item)
   }
@@ -19,6 +24,8 @@ const Admin = () => {
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-[#171821]">
           <ul className="space-y-2 font-medium text-white">
+
+
             <li className={`${currentItem === "Users"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
               <Link
                 to={'/admin/dashboard/users'}
@@ -29,6 +36,8 @@ const Admin = () => {
                 <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
               </Link>
             </li>
+
+
             <li className={`${currentItem === "Therapists"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
               <Link
                 to={'/admin/dashboard/therapists'}
@@ -39,6 +48,8 @@ const Admin = () => {
                 <span className="flex-1 ms-3 whitespace-nowrap">Therapists</span>
               </Link>
             </li>
+
+
             <li className={`${currentItem === "Supervisors"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
               <Link
                 to={'/admin/dashboard/supervisors'}
@@ -49,6 +60,7 @@ const Admin = () => {
                 <span className="flex-1 ms-3 whitespace-nowrap">Supervisors</span>
               </Link>
             </li>
+
 
           </ul>
         </div>

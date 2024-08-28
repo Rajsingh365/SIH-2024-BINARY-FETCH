@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { motion } from 'framer-motion';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const NewTherapistInfo = () => {
@@ -26,12 +27,12 @@ const NewTherapistInfo = () => {
     ],
   };
   return (
-    <div className="bg-[#21222D] py-10 rounded-lg mx-5 w-[90%] ">
+    <motion.div initial={{opacity:0,scale:0.8}} animate={{opacity:1,scale:1}} transition={{duration:3}} className="bg-[#21222D] py-10 rounded-lg mx-5 w-[90%] ">
       <h2 className="text-3xl font-semibold ml-10 pb-5">New Therapist Summary</h2>
       <div className="flex items-center justify-center p-5 text-3xl text-center">
         <Line data={data} height={50} width={''} />
       </div>
-    </div>
+    </motion.div>
   )
 }
 

@@ -11,7 +11,7 @@ const AdminNavbar = () => {
     <div className="navbar bg-primary text-primary-content">
       <div className="flex-1">
         <Link to={"/"} className="btn btn-ghost text-xl">
-          daisyUI
+          SpeechStream
         </Link>
       </div>
 
