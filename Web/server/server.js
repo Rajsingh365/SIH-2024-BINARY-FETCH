@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDb from "./db/db_connect.js";
 
 import authRoutes from "./routes/auth.route.js"
+import planRoutes from "./routes/therapyplan.route.js"
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/auth",authRoutes);
+app.use("/api/plan",planRoutes);
 // app.use("/api/user",userRoutes);
 // app.use("/api/itineraries",itineraryRoutes);
 
