@@ -16,20 +16,30 @@ const progressReportSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    progressSummary: {
+    progress: {
       type: String,
       required: true,
     },
-
+    summary: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       enum: ["pending", "reviewed"],
       default: "pending",
     },
+    therapyGoals: {
+      type: String,
+      required: true
+    },
+    nextSteps: {
+      type: String,
+      required: true
+    }
   },
   { timestamps: true }
 );
 
 const ProgressReport = mongoose.model("ProgressReport", progressReportSchema);
-
 export default ProgressReport;

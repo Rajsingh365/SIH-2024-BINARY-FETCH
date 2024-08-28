@@ -28,6 +28,14 @@ const sessionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    progress: {
+      type: String,
+      required: true
+    },
+    summary: {
+      type: String,
+      required: true
+    }
   },
   { timestamps: true }
 );
@@ -35,3 +43,4 @@ const sessionSchema = new mongoose.Schema(
 const Session = mongoose.model("Session", sessionSchema);
 
 export default Session;
+
