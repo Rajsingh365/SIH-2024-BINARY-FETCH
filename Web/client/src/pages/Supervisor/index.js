@@ -1,4 +1,4 @@
-import { FeedbackForm } from "./FeedbackForm";
+import { ClinicalRatings } from "./ClinicalRatings";
 import { ProgressReportList } from "./ProgressReportList";
 import { SessionList } from "./SessionList";
 import { TherapyPlanList } from "./TherapyPlanList";
