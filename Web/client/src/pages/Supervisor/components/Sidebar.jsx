@@ -7,7 +7,7 @@ export const Sidebar = () => {
         <NavLink to={"/supervisor/dashboard"}>Dashboard</NavLink> <br />
       </div>
       <div className="sv-nav-link">
-        <NavLink to={"clinical-rating"}>Clinical Rating</NavLink> <br />
+        <NavLink to={"therapy-plans"}>All therapy plans</NavLink> <br />
       </div>
       <div className="sv-nav-link">
         <NavLink to={"progress-report"}>All Progress Reports</NavLink> <br />
@@ -16,7 +16,7 @@ export const Sidebar = () => {
         <NavLink to={"sessions"}>All session notes</NavLink> <br />
       </div>
       <div className="sv-nav-link">
-        <NavLink to={"therapy-plans"}>All therapy plans</NavLink> <br />
+        <NavLink to={"clinical-rating"}>Clinical Rating</NavLink> <br />
       </div>
     </div>
   );

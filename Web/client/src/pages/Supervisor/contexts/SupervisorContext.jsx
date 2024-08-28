@@ -14,6 +14,8 @@ export const SupervisorContextProvider = ({ children }) => {
 
   const [progressReports, setProgressReports] = useState([]);
 
+  const [clinicalRatings, setClinicalRatings] = useState([]);
+
   const fetchTherapyPlans = async () => {
     const response = await axios.get("http://localhost:8080/therapyPlans");
 
@@ -106,6 +108,15 @@ export const SupervisorContextProvider = ({ children }) => {
     fetchProgressReports();
   }, [time]);
 
+  const fetchClinicalRatings = async () => {
+    const response = await axios.get("http://localhost:8080/clinicalRatings");
+    setClinicalRatings(response.data);
+  };
+
+  useEffect(() => {
+    fetchClinicalRatings();
+  }, []);
+
   return (
     <context.Provider
       value={{
@@ -120,6 +131,7 @@ export const SupervisorContextProvider = ({ children }) => {
         setIsNewPlans,
         sessions,
         progressReports,
+        clinicalRatings,
       }}
     >
       {children}
