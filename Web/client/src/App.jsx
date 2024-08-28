@@ -1,9 +1,10 @@
 import React from "react";
-import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
+import AdminDashboard from "./pages/Admin/AdminDashboardContent.jsx";
 import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { FeedbackForm, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout } from "./pages/Supervisor";
-
+import { SupervisorDashboard , NotificationSupervisor} from "./pages/Supervisor/index.js";
+import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
+import {TherapistDashboard} from "./pages/Therapist/index.js";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,11 +15,22 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <AdminDashboard />,
-          },
-          {
-            path: "workspace",
-            element: <h1>Admin Workspace</h1>,
+            element: <Admin />,
+            children: [
+              {
+                path: "users",
+                element: <Users />,
+              },
+              {
+                path: "therapists",
+                element: <Therapists/>,
+              },
+              { 
+                path: "supervisors",
+                element: <Supervisors/>,
+              },
+            ],
+
           },
         ],
       },
@@ -27,29 +39,24 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <h1>Supervisor Dashboard</h1>,
+            element: <SupervisorDashboard/>,
           },
           {
             path: "workspace",
-            element: <WorkspaceLayout />,
-            children: [
-              {
-                path: "progress-report",
-                element: <ProgressReportList />,
-              },
-              {
-                path: "sessions",
-                element: <SessionList />,
-              },
-              {
-                path: "therapy-plans",
-                element: <TherapyPlanList />,
-              },
-              {
-                path: "clinical-rating",
-                element: <FeedbackForm />,
-              },
-            ],
+            element: <h1>Supervisor Workspace</h1>,
+          },
+        ],
+      },
+      {
+        path: "/therapist",
+        children: [
+          {
+            path: "dashboard",
+            element: <TherapistDashboard/>,
+          },
+          {
+            path: "workspace",
+            element: <h1>Therapist Workspace</h1>,
           },
         ],
       },

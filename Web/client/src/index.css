@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Supervisor Sidebar styles */
+.sv-nav-link a {
+  @apply inline-block w-full;
+}
+
+.sv-nav-link {
+  @apply py-1 my-2 px-2 hover:px-4 rounded-md transition-all ease-in-out duration-200 border-b-2 border-purple-500 hover:bg-slate-700;
+}
+
+.sv-nav-link:has(a.active) {
+  @apply bg-slate-700;
+}
+
+/* Supervisor TherapyPlanList Styles */
+
+.sv-toggle-option {
+  @apply w-full text-center p-2 rounded-lg transition ease-in-out duration-300 cursor-pointer;
+}
