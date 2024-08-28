@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { easeInOut, motion } from "framer-motion";
 const Header = () => {
   const [dateTime, setDateTime] = useState("");
 
@@ -7,6 +7,7 @@ const Header = () => {
     const intervalId = setInterval(() => {
       updateTime();
     }, 1000);
+    updateTime()
 
     return () => clearInterval(intervalId); 
   }, []);
@@ -20,10 +21,11 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-[#21222D] p-5 text-[#5DADE2] text-3xl text-center rounded-lg">
+    <motion.div
+    className="bg-[#21222D] p-5 text-[#5DADE2] text-3xl text-center rounded-lg">
       Welcome "Raj Singh"
       <span className="text-[#F7DC6F] ml-60">{dateTime}</span>
-    </div>
+    </motion.div>
   );
 };
 

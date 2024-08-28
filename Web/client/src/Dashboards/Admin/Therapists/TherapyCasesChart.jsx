@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { motion } from "framer-motion";
 
 ChartJS.register(
   CategoryScale,
@@ -67,12 +68,14 @@ const TherapyCasesChart = () => {
 
   return (
     <div className="bg-[#21222D] py-10 rounded-lg mx-5 w-[70%] ">
-      <div>
+      <motion.div initial ={{scale:0.8,opacity:0}} whileInView={{scale:1,transition:{
+        duration:1.2
+      },opacity:1}}>
         <h2 className="text-3xl font-semibold ml-10 pb-5">
           Therapy Cases Dashboard
         </h2>
-        <Bar data={data} options={options} />
-      </div>
+        <Bar className="h-24" data={data} options={options} />
+      </motion.div>
     </div>
   );
 };
