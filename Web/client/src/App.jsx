@@ -1,13 +1,14 @@
 import React from "react";
 import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout } from "./pages/Supervisor";
-import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
-
+import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
+import {TherapistDashboard} from "./pages/Therapist/index.js";
+import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
 import ProgressReport from "./pages/Therapist/ProgressReport";
 import TherapistProgressReportList from "./pages/Therapist/ProgressReportList";
 import SessionForm from "./pages/Therapist/SessionForm.jsx";
 import SessionFormList from "./pages/Therapist/SessionFormList.jsx";
+import WorkspaceLayoutTherapist from "./pages/Therapist/WorkspaceLayoutTherapist.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +20,22 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <AdminDashboard />,
-          },
-          {
-            path: "workspace",
-            element: <h1>Admin Workspace</h1>,
+            element: <Admin />,
+            children: [
+              {
+                path: "users",
+                element: <Users />,
+              },
+              {
+                path: "therapists",
+                element: <Therapists/>,
+              },
+              { 
+                path: "supervisors",
+                element: <Supervisors/>,
+              },
+            ],
+
           },
         ],
       },
@@ -32,7 +44,7 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <h1>Supervisor Dashboard</h1>,
+            element: <SupervisorDashboard/>,
           },
           {
             path: "workspace",
@@ -62,20 +74,30 @@ const router = createBrowserRouter([
         path: "/therapist",
         children: [
           {
-            path: "progress-report",
-            element: <ProgressReport />,
+            path: "dashboard",
+            element: <TherapistDashboard/>,
           },
           {
-            path: "progress-report-list",
-            element: <TherapistProgressReportList />,
-          },
-          {
-            path: "session-list",
-            element: <SessionFormList />,
-          },
-          {
-            path: "session-form/:patientId",
-            element: <SessionForm />,
+            path: "workspace",
+            element: <WorkspaceLayoutTherapist />,
+            children: [
+              {
+                path: "progress-report",
+                element: <ProgressReport />,
+              },
+              {
+                path: "progress-report-list",
+                element: <TherapistProgressReportList />,
+              },
+              {
+                path: "session-list",
+                element: <SessionFormList />,
+              },
+              {
+                path: "session-form/:patientId",
+                element: <SessionForm />,
+              },
+            ],
           },
         ],
       },
