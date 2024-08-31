@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProgressReportList = () => {
   // Sample progress data with 16 entries for demonstration
@@ -7,29 +8,6 @@ const ProgressReportList = () => {
     conditionBefore: 'Condition before therapy',
     conditionAfter: 'Condition after therapy',
   }));
-
-  // Sidebar component
-  const Sidebar = () => (
-    <aside className="w-64 bg-gray-800 text-white min-h-screen p-4">
-      <h1 className="text-2xl font-bold mb-6">Speech Therapy</h1>
-      <nav>
-        <ul>
-          <li className="mb-4">
-            <a href="/cases" className="hover:text-gray-400">Cases</a>
-          </li>
-          <li className="mb-4">
-            <a href="/therapy-progress" className="hover:text-gray-400">Therapy Progress</a>
-          </li>
-          <li className="mb-4">
-            <a href="/reports" className="hover:text-gray-400">Reports</a>
-          </li>
-          <li>
-            <a href="/sessions" className="hover:text-gray-400">Sessions</a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-  );
 
   // ProgressCard component with square shape and aligned content
   const ProgressCard = ({ name, conditionBefore, conditionAfter }) => (
@@ -61,12 +39,13 @@ const ProgressReportList = () => {
       <h1 className="text-3xl font-bold text-white mb-6">Progress Report List</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {progressData.map((data, index) => (
+          <Link to={`/therapist/workspace/progress-report/`} key={index}>
           <ProgressCard
             key={index}
             name={data.name}
             conditionBefore={data.conditionBefore}
             conditionAfter={data.conditionAfter}
-          />
+          /></Link>
         ))}
       </div>
     </main>
@@ -75,7 +54,6 @@ const ProgressReportList = () => {
   // Render the combined layout
   return (
     <div className="flex">
-      <Sidebar />
       <MainContent />
     </div>
   );

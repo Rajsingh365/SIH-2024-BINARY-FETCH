@@ -56,27 +56,6 @@ const SessionForm = () => {
     // Here you would typically save the session data
   };
 
-  const Sidebar = () => (
-    <aside className="w-64 bg-gray-800 text-white min-h-screen p-4">
-      <h1 className="text-2xl font-bold mb-6">Speech Therapy</h1>
-      <nav>
-        <ul>
-          <li className="mb-4">
-            <a href="/cases" className="hover:text-gray-400">Cases</a>
-          </li>
-          <li className="mb-4">
-            <a href="/therapy-progress" className="hover:text-gray-400">Therapy Progress</a>
-          </li>
-          <li className="mb-4">
-            <a href="/reports" className="hover:text-gray-400">Reports</a>
-          </li>
-          <li>
-            <a href="/sessions" className="hover:text-gray-400">Sessions</a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-  );
 
   const MainContent = () => (
     <main className="flex-1 p-6 bg-gray-900 text-white">
@@ -197,7 +176,6 @@ const SessionForm = () => {
 
   return (
     <div className="flex">
-      <Sidebar />
       <MainContent />
     </div>
   );

@@ -14,7 +14,7 @@ import {
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend);
 
 const ProgressReport = () => {
-  const [reports, setReports] = useState([
+  const report = 
     {
       name: 'Patient 1',
       conditionBefore: 'Mild stutter',
@@ -23,66 +23,17 @@ const ProgressReport = () => {
       progress: [30, 50, 70, 90], // Example progress data
       speechRate: [5, 6, 7, 8],  // Example speech rate over sessions
       articulationAccuracy: [70, 75, 80, 85],  // Example articulation accuracy over sessions
-    },
-    {
-      name: 'Patient 2',
-      conditionBefore: 'Severe stutter',
-      conditionAfter: 'Moderate improvement',
-      date: '2024-08-10',
-      progress: [20, 40, 60, 80], // Example progress data
-      speechRate: [4, 5, 6, 7],  // Example speech rate over sessions
-      articulationAccuracy: [60, 65, 70, 75],  // Example articulation accuracy over sessions
-    },
-    // Add more sample data if needed
-  ]);
+    }
 
-  const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredReports = reports.filter(report =>
-    report.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col lg:flex-row">
-   
-    <aside className="w-64 bg-gray-800 text-white min-h-screen p-4">
-      <h1 className="text-2xl font-bold mb-6">Speech Therapy</h1>
-      <nav>
-        <ul>
-          <li className="mb-4">
-            <a href="/cases" className="hover:text-gray-400">Cases</a>
-          </li>
-          <li className="mb-4">
-            <a href="/therapy-progress" className="hover:text-gray-400">Therapy Progress</a>
-          </li>
-          <li className="mb-4">
-            <a href="/reports" className="hover:text-gray-400">Reports</a>
-          </li>
-          <li>
-            <a href="/sessions" className="hover:text-gray-400">Sessions</a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-  
-      <div className="flex-1 p-4">
-        {/* Search Bar */}
-        <div className="flex items-center mb-6 bg-gray-800 rounded-lg p-2">
-          <input
-            type="text"
-            placeholder="Search reports..."
-            className="bg-transparent text-white border-none outline-none placeholder-gray-400 w-full"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
         {/* Patient Information Section */}
-        <section className="bg-gray-800 p-6 rounded-lg mb-6 shadow-lg">
+        <section className="bg-gray-800 p-6 rounded-lg mb-6 shadow-lg w-full">
           <h2 className="text-2xl font-bold mb-4">Patient Information</h2>
-          {filteredReports.length > 0 ? (
-            filteredReports.map((report, index) => (
-              <div key={index} className="mb-6">
+        
+              <div className="mb-6">
                 <h3 className="text-lg font-semibold">Name: {report.name}</h3>
                 <p className="text-sm">Condition Before: {report.conditionBefore}</p>
                 <p className="text-sm">Condition After: {report.conditionAfter}</p>
@@ -127,14 +78,13 @@ const ProgressReport = () => {
                   </div>
                 </div>
               </div>
-            ))
-          ) : (
-            <p className="text-gray-400">No reports found.</p>
-          )}
+
         </section>
       </div>
-    </div>
   );
 };
 
 export default ProgressReport;
+
+
+

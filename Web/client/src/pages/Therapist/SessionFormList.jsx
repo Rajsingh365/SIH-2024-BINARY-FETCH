@@ -23,28 +23,6 @@ const SessionFormList = () => {
     { id: 16, name: 'Patient 16', age: 45, gender: 'Male', problem: 'Voice Disorder' },
   ];
 
-  const Sidebar = () => (
-    <aside className="w-64 bg-gray-800 text-white min-h-screen p-4">
-      <h1 className="text-2xl font-bold mb-6">Speech Therapy</h1>
-      <nav>
-        <ul>
-          <li className="mb-4">
-            <a href="/cases" className="hover:text-gray-400">Cases</a>
-          </li>
-          <li className="mb-4">
-            <a href="/therapy-progress" className="hover:text-gray-400">Therapy Progress</a>
-          </li>
-          <li className="mb-4">
-            <a href="/reports" className="hover:text-gray-400">Reports</a>
-          </li>
-          <li>
-            <a href="/sessions" className="hover:text-gray-400">Sessions</a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-  );
-
 
 
   // PatientCard component with updated onClick handler
@@ -60,7 +38,7 @@ const SessionFormList = () => {
         <div className="text-center">
           <button
             className="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-400"
-            onClick={() => navigate(`/therapist/session-form/${id}`)}
+            onClick={() => navigate(`/therapist/workspace/session-form/${id}`)}
           >
             Session Details
           </button>
@@ -90,10 +68,7 @@ const SessionFormList = () => {
 
   // Render the combined layout (unchanged)
   return (
-    <div className="flex">
-      <Sidebar />
       <MainContent />
-    </div>
   );
 };
 
