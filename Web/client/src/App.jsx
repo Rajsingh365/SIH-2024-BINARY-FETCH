@@ -1,26 +1,132 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { FeedbackForm, ProgressReportList, SessionList, TherapyPlanList } from "./pages/Supervisor";
-import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
+import {TherapistDashboard} from "./pages/Therapist/index.js";
+import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
+import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
+import {TherapistDashboard} from "./pages/Therapist/index.js";
+import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
+import ProgressReport from "./pages/Therapist/ProgressReport";
+import TherapistProgressReportList from "./pages/Therapist/ProgressReportList";
+import SessionForm from "./pages/Therapist/SessionForm.jsx";
+import SessionFormList from "./pages/Therapist/SessionFormList.jsx";
+import Therapist from "./pages/Therapist/Therapist.jsx";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/admin",
+        children: [
+          {
+            path: "dashboard",
+            element: <Admin />,
+            children: [
+              {
+                path: "users",
+                element: <Users />,
+              },
+              {
+                path: "therapists",
+                element: <Therapists/>,
+              },
+              { 
+                path: "supervisors",
+                element: <Supervisors/>,
+              },
+            ],
+
+            element: <Admin />,
+            children: [
+              {
+                path: "users",
+                element: <Users />,
+              },
+              {
+                path: "therapists",
+                element: <Therapists/>,
+              },
+              { 
+                path: "supervisors",
+                element: <Supervisors/>,
+              },
+            ],
+
+          },
+        ],
+      },
+      {
+        path: "/supervisor",
+        children: [
+          {
+            path: "dashboard",
+            element: <SupervisorDashboard/>,
+            element: <SupervisorDashboard/>,
+          },
+          {
+            path: "workspace",
+            element: <WorkspaceLayout />,
+            children: [
+              {
+                path: "progress-report",
+                element: <ProgressReportList />,
+              },
+              {
+                path: "sessions",
+                element: <SessionList />,
+              },
+              {
+                path: "therapy-plans",
+                element: <TherapyPlanList />,
+              },
+              {
+                path: "clinical-rating",
+                element: <ClinicalRatings />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: "/therapist",
+        children: [
+          {
+            path: "dashboard",
+            element: <TherapistDashboard/>,
+          },
+          {
+            path: "workspace",
+            element: <Therapist />,
+            children: [
+              {
+                path: "progress-report",
+                element: <ProgressReport />,
+              },
+              {
+                path: "progress-report-list",
+                element: <TherapistProgressReportList />,
+              },
+              {
+                path: "session-list",
+                element: <SessionFormList />,
+              },
+              {
+                path: "session-form/",
+                element: <SessionForm />,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<h1>Hello</h1>} />
-        <Route path="/supervisor/clinical-rating" element={<FeedbackForm />} />
-        <Route path="/supervisor/progress-report-list" element={<ProgressReportList />} />  
-        <Route path="/supervisor/sessions-list" element={<SessionList />} />
-        <Route path="/supervisor/therapy-plan-list" element={<TherapyPlanList />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 };
 
 export default App;
