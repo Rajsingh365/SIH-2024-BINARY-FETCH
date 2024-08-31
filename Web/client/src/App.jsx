@@ -8,7 +8,7 @@ import ProgressReport from "./pages/Therapist/ProgressReport";
 import TherapistProgressReportList from "./pages/Therapist/ProgressReportList";
 import SessionForm from "./pages/Therapist/SessionForm.jsx";
 import SessionFormList from "./pages/Therapist/SessionFormList.jsx";
-import WorkspaceLayoutTherapist from "./pages/Therapist/WorkspaceLayoutTherapist.jsx";
+import Therapist from "./pages/Therapist/Therapist.jsx";
 
 const router = createBrowserRouter([
   {
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
           },
           {
             path: "workspace",
-            element: <WorkspaceLayoutTherapist />,
+            element: <Therapist />,
             children: [
               {
                 path: "progress-report",
@@ -94,7 +94,7 @@ const router = createBrowserRouter([
                 element: <SessionFormList />,
               },
               {
-                path: "session-form/:patientId",
+                path: "session-form/",
                 element: <SessionForm />,
               },
             ],

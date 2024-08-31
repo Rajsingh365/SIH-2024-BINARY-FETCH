@@ -1,3 +1,4 @@
 import TherapistDashboard from "../../Dashboards/Therapist/TherapistDashboard";
 import NotificationFeed from "./NotificationTherapist";
-export { TherapistDashboard,  };
+import Therapist from "./Therapist";
+export { TherapistDashboard, Therapist };
