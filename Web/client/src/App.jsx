@@ -4,9 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
 import {TherapistDashboard} from "./pages/Therapist/index.js";
 import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
-import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
-import {TherapistDashboard} from "./pages/Therapist/index.js";
-import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
 import ProgressReport from "./pages/Therapist/ProgressReport";
 import TherapistProgressReportList from "./pages/Therapist/ProgressReportList";
 import SessionForm from "./pages/Therapist/SessionForm.jsx";
@@ -39,22 +36,6 @@ const router = createBrowserRouter([
               },
             ],
 
-            element: <Admin />,
-            children: [
-              {
-                path: "users",
-                element: <Users />,
-              },
-              {
-                path: "therapists",
-                element: <Therapists/>,
-              },
-              { 
-                path: "supervisors",
-                element: <Supervisors/>,
-              },
-            ],
-
           },
         ],
       },
@@ -63,7 +44,6 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <SupervisorDashboard/>,
             element: <SupervisorDashboard/>,
           },
           {
