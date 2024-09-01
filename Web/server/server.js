@@ -21,7 +21,6 @@ app.use('/api/patient',patientRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/session",sessionRoutes);
 // app.use("/api/itineraries",itineraryRoutes);
-
 app.get("/",(req,res)=>{
   res.json({message: "Hello world"});
 })

@@ -6,12 +6,24 @@ const therapyPlanSchema = new mongoose.Schema({
     ref: "Patient",
     required: true
   },
-  therapist: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+  submissionDate: {
+    type: Date,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ["Awaiting Review", "Approved", "Rejected"],
+    default: "Awaiting Review"
+  },
+  priority: {
+    type: String,
     required: true
   },
   goals: {
+    type: String,
+    required: true
+  },
+  activities: {
     type: String,
     required: true
   },
@@ -19,26 +31,40 @@ const therapyPlanSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  patientHistory: {
+    type: String,
+    required: true
+  },
+  additionalNotes: {
+    type: String
+  },
+  milestones: [
+    {
+      week: {
+        type: Number,
+        required: true
+      },
+      milestone: {
+        type: String,
+        required: true
+      }
+    }
+  ],
+  attachments: [
+    {
+      type: String,
+      default: "Review.pdf"
+    }
+  ],
   reviewDate: {
-    type: Date,
-    required: true
+    type: Date
   },
-  status: {
+  feedback: { 
     type: String,
-    enum: ["pending","approved","rejected"],
-    default: "pending"
-  },
-  priority: {
-    type: String,
-    required: true
-  },
-  activities: {
-    type: String,
-    required: true
+    default: ""
   }
-
 }, { timestamps: true });
 
-const TherapyPlan = mongoose.model("TherapyPlan",therapyPlanSchema);
+const TherapyPlan = mongoose.model("TherapyPlan", therapyPlanSchema);
 
 export default TherapyPlan;

@@ -1,6 +1,12 @@
-import React from 'react'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const TherapistDashboardNavbar = () => {
+  const navigate = useNavigate();
+  const handleNavigate = ()=>{
+    navigate("/therapist/workspace/progress-report-list");
+  }
+
   return (
     <div className="navbar bg-neutral text-neutral-content">
       <div className="navbar-start">
@@ -25,7 +31,7 @@ const TherapistDashboardNavbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li>
+            <li onClick={handleNavigate}>
               <a>Workspace</a>
             </li>
             <li>
@@ -78,7 +84,7 @@ const TherapistDashboardNavbar = () => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TherapistDashboardNavbar
+export default TherapistDashboardNavbar;

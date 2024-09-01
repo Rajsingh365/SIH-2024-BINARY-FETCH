@@ -10,9 +10,9 @@ import TherapistWorkspace from './TherapistWorkspace';
 const Therapist = () => {
   const [currentItem, setCurrentItem]=useState("Cases")
   const navigate = useNavigate()
-  useEffect(()=>{
-    navigate('/therapist/workspace/case-list')
-  },[])
+  // useEffect(()=>{
+  //   navigate('/therapist/workspace/case-list')
+  // },[])
   const handleItemClick=(item)=>{
     setCurrentItem(item)
   }
@@ -38,16 +38,6 @@ const Therapist = () => {
               </Link>
             </li>
 
-            <li className={`${currentItem === "Cases"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
-              <Link
-                to={'/therapist/workspace/case-list'}
-                className="flex items-center p-2 rounded-lg group"
-                onClick={()=>handleItemClick("Cases")}
-              >
-                <FaUsers className="text-2xl" />
-                <span className="flex-1 ms-3 whitespace-nowrap">Cases</span>
-              </Link>
-            </li>
 
 
             <li className={`${currentItem === "Therapy Progress"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
@@ -82,6 +72,18 @@ const Therapist = () => {
                 <span className="flex-1 ms-3 whitespace-nowrap">Reports</span>
               </Link>
             </li>
+
+            <li className={`${currentItem === "Report Plans"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
+              <Link
+                to={'/therapist/workspace/therapy-plan-status'}
+                className="flex items-center p-2 rounded-lg group"
+                onClick={()=>handleItemClick("Report Plans")} 
+              >
+                <MdOutlineSupervisedUserCircle className="text-2xl" />
+                <span className="flex-1 ms-3 whitespace-nowrap">Reports Plans</span>
+              </Link>
+            </li>
+
           </ul>
         </div>
       </aside>

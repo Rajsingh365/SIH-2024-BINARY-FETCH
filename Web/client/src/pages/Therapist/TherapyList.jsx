@@ -1,112 +1,253 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaCalendarAlt, FaInfoCircle, FaBullseye, FaClock, FaHourglassHalf } from "react-icons/fa";
+import {
+  FaUser,
+  FaCalendarAlt,
+  FaInfoCircle,
+  FaBullseye,
+  FaTasks,
+  FaHourglassHalf,
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-function TherapyList() {
-  const navigate = useNavigate();
-  const [therapies, setTherapies] = useState([]);
+function CaseList() {
+
+  // let patients = [
+  //   {
+  //     id: "TP001",
+  //     patientName: "Liam Johnson",
+  //     patientAge: 7,
+  //     condition: "Articulation Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Improve articulation of specific sounds.",
+  //     activities: "Sound production drills, word repetition exercises.",
+  //     duration: "12 weeks",
+  //   },
+  //   {
+  //     id: "TP002",
+  //     patientName: "Emma Davis",
+  //     patientAge: 6,
+  //     condition: "Fluency Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Reduce stuttering and improve speech fluency.",
+  //     activities: "Fluency shaping techniques, breathing exercises.",
+  //     duration: "14 weeks",
+  //   },
+  //   {
+  //     id: "TP003",
+  //     patientName: "Noah Martinez",
+  //     patientAge: 9,
+  //     condition: "Voice Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Improve voice quality and reduce hoarseness.",
+  //     activities: "Voice exercises, vocal hygiene education.",
+  //     duration: "10 weeks",
+  //   },
+  //   {
+  //     id: "TP004",
+  //     patientName: "Olivia Wilson",
+  //     patientAge: 8,
+  //     condition: "Language Delay",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Enhance vocabulary and sentence structure.",
+  //     activities: "Storytelling, language games.",
+  //     duration: "12 weeks",
+  //   },
+  //   {
+  //     id: "TP005",
+  //     patientName: "Aiden Brown",
+  //     patientAge: 7,
+  //     condition: "Social Communication Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Improve social interactions and conversational skills.",
+  //     activities: "Role-playing, social stories.",
+  //     duration: "16 weeks",
+  //   },
+  //   {
+  //     id: "TP006",
+  //     patientName: "Sophia Taylor",
+  //     patientAge: 9,
+  //     condition: "Autism Spectrum Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "Medium",
+  //     goals: "Enhance functional communication and social skills.",
+  //     activities: "Structured play, visual supports.",
+  //     duration: "18 weeks",
+  //   },
+  //   {
+  //     id: "TP007",
+  //     patientName: "Jackson Lee",
+  //     patientAge: 8,
+  //     condition: "Apraxia of Speech",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Improve speech motor planning and execution.",
+  //     activities: "Motor speech drills, repetition tasks.",
+  //     duration: "14 weeks",
+  //   },
+  //   {
+  //     id: "TP008",
+  //     patientName: "Mia Harris",
+  //     patientAge: 6,
+  //     condition: "Receptive Language Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "Medium",
+  //     goals: "Improve comprehension of spoken language.",
+  //     activities: "Following directions, language comprehension tasks.",
+  //     duration: "12 weeks",
+  //   },
+  //   {
+  //     id: "TP009",
+  //     patientName: "Ethan Clark",
+  //     patientAge: 7,
+  //     condition: "Expressive Language Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "Medium",
+  //     goals: "Enhance ability to express thoughts and ideas.",
+  //     activities: "Sentence construction exercises, storytelling.",
+  //     duration: "14 weeks",
+  //   },
+  //   {
+  //     id: "TP010",
+  //     patientName: "Isabella Robinson",
+  //     patientAge: 6,
+  //     condition: "Cognitive Communication Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "Low",
+  //     goals: "Improve attention, memory, and executive functions.",
+  //     activities: "Memory games, attention tasks.",
+  //     duration: "16 weeks",
+  //   },
+  //   {
+  //     id: "TP011",
+  //     patientName: "Mason Walker",
+  //     patientAge: 8,
+  //     condition: "Speech Sound Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Correct speech sound errors.",
+  //     activities: "Articulation practice, minimal pairs.",
+  //     duration: "12 weeks",
+  //   },
+  //   {
+  //     id: "TP012",
+  //     patientName: "Avery Hall",
+  //     patientAge: 9,
+  //     condition: "Dysarthria",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "Medium",
+  //     goals: "Improve speech clarity and strength.",
+  //     activities: "Strengthening exercises, breath support training.",
+  //     duration: "14 weeks",
+  //   },
+  //   {
+  //     id: "TP013",
+  //     patientName: "Harper Young",
+  //     patientAge: 7,
+  //     condition: "Pragmatic Language Disorder",
+  //     submissionDate: "2024-08-20",
+  //     status: "Awaiting Review",
+  //     priority: "High",
+  //     goals: "Enhance social communication and appropriate use of language.",
+  //     activities: "Social skills training, conversation practice.",
+  //     duration: "18 weeks",
+  //   },
+  // ];
+  const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    const fetchTherapies = async () => {
-      // Simulate an API call with a delay
-      const response = await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve([
-            {
-              id: "T101",
-              therapyName: "Language Comprehension",
-              startDate: "2024-01-10",
-              status: "Ongoing",
-              goals: "Improve coping mechanisms.",
-              frequency: "1 time a week",
-              duration: "16 weeks",
-            },
-            {
-              id: "T102",
-              therapyName: "Speech Fluency",
-              startDate: "2024-02-18",
-              status: "Completed",
-              goals: "Restore physical function.",
-              frequency: "3 times a week",
-              duration: "8 weeks",
-            },
-            {
-              id: "T103",
-              therapyName: "Speech Articulation",
-              startDate: "2024-03-12",
-              status: "Ongoing",
-              goals: "Express emotions through art.",
-              frequency: "2 times a week",
-              duration: "10 weeks",
-            },
-            {
-              id: "T104",
-              therapyName: "Swallowing",
-              startDate: "2024-03-12",
-              status: "Ongoing",
-              goals: "Express emotions through art.",
-              frequency: "2 times a week",
-              duration: "10 weeks",
-            },
-          ]);
-        }, 1000);
-      });
-
-      if (response) {
-        setTherapies(response);
-      } else {
-        // Set default data if the response is empty
-        setTherapies([
-          {
-            id: "Default",
-            therapyName: "No Therapy Data Available",
-            startDate: "N/A",
-            status: "N/A",
-            goals: "N/A",
-            frequency: "N/A",
-            duration: "N/A",
-          },
-        ]);
-      }
+    const getAllPatients = async () => {
+      const response = await fetch(
+        "http://localhost:5000/api/patient/get-all-patients"
+      );
+      const data = await response.json();
+      setPatients(data);
+      console.log(data);
     };
-
-    fetchTherapies();
+    getAllPatients();
   }, []);
-
-  const handleClick = (id) => {
-    navigate(`/therapist/workspace/therapy-page/${id}`);
-  };
-
   return (
     <div className="bg-gray-900 min-h-screen p-8">
-      <h1 className="text-4xl font-bold text-white mb-8">Ongoing Therapies</h1>
+      <h1 className="text-4xl font-bold text-white mb-8">Patients Progress</h1>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {therapies.map((therapy) => (
+        {patients.map((patient) => (
+          
           <div
-            key={therapy.id}
-            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition duration-300 hover:scale-105"
-            onClick={() => handleClick(therapy.id)}
+            key={patient._id}
+            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
           >
             <div className="p-6">
-              <h2 className="text-2xl font-semibold text-white mb-4">{therapy.therapyName}</h2>
+
+              <div className="flex justify-between">
+            <Link to={`/therapist/workspace/therapy-page/${patient._id}`}>
+              <h2 className="text-2xl font-semibold text-white mb-4">
+                {patient.name}
+              </h2>
+              </Link>
+              <Link to={`/therapist/workspace/create-therapy-plan/${patient._id}`}>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Create Plan
+              </button>
+              </Link>
+              </div>
               <div className="space-y-2 text-gray-300">
-                <p className="flex items-center"><FaCalendarAlt className="mr-2 text-green-400" /> {therapy.startDate}</p>
-                <p className="flex items-center"><FaInfoCircle className="mr-2 text-yellow-400" /> {therapy.status}</p>
-                <p className="flex items-center"><FaBullseye className="mr-2 text-red-400" /> {therapy.goals}</p>
-                <p className="flex items-center"><FaClock className="mr-2 text-purple-400" /> {therapy.frequency}</p>
-                <p className="flex items-center"><FaHourglassHalf className="mr-2 text-pink-400" /> {therapy.duration}</p>
+                <p className="flex items-center">
+                  <FaUser className="mr-2 text-blue-400" /> Age:{" "}
+                  {patient.age}
+                </p>
+                <p className="flex items-center">
+                  <FaInfoCircle className="mr-2 text-green-400" /> Condition:{" "}
+                  {patient.condition}
+                </p>
+                <p className="flex items-center">
+                  <FaCalendarAlt className="mr-2 text-yellow-400" /> Submitted:{" "}
+                  {patient.createdAt.slice(0, 10)}
+                </p>
+                <p className="flex items-center">
+                  <FaInfoCircle className="mr-2 text-red-400" /> Status:{" "}
+                  {patient.status}
+                </p>
+                <p className="flex items-center">
+                  <FaInfoCircle className="mr-2 text-purple-400" /> Priority:{" "}
+                  {patient.priority}
+                </p>
+                <p className="flex items-center">
+                  <FaBullseye className="mr-2 text-pink-400" /> Goals:{" "}
+                  {patient.goals}
+                </p>
+                <p className="flex items-center">
+                  <FaTasks className="mr-2 text-indigo-400" /> Activities:{" "}
+                  {patient.activities}
+                </p>
+                <p className="flex items-center">
+                  <FaHourglassHalf className="mr-2 text-orange-400" /> Duration:{" "}
+                  {patient.duration}
+                </p>
               </div>
             </div>
-            <div className="bg-gray-700 p-4 text-right">
-              <button className="text-white bg-blue-600 hover:bg-blue-700 font-bold py-2 px-4 rounded">
-                View Details
-              </button>
-            </div>
           </div>
+         
+          
         ))}
       </div>
     </div>
   );
 }
 
-export default TherapyList;
+export default CaseList;
