@@ -10,176 +10,111 @@
         "Is anyone there?"
       ],
       "responses": [
-        "Hello, how can I assist you today?",
-        "Hi there, what can I help you with?",
-        "Good day! How can I be of service?"
+        "Hello, how can I assist you with your therapy cases today?",
+        "Hi there, what do you need help with regarding your therapy sessions?",
+        "Good day! How can I support your clinical tasks?"
       ]
     },
     {
       "tag": "goodbye",
       "patterns": ["Goodbye", "See you later", "Thanks, bye", "Bye"],
       "responses": [
-        "Take care, and stay safe!",
-        "Goodbye! If you need further help, we're here for you.",
-        "Bye! Don't hesitate to reach out if you need anything else."
+        "Take care! Let us know if you need any further assistance.",
+        "Goodbye! We're here whenever you need help with your cases.",
+        "Bye! Reach out if you need anything else for your therapy sessions."
       ]
     },
     {
       "tag": "thanks",
       "patterns": ["Thank you", "Thanks a lot", "Much appreciated", "Thanks"],
       "responses": [
-        "You're welcome!",
-        "Happy to help!",
-        "Glad I could assist you!"
+        "You're welcome! Glad I could help with your clinical tasks.",
+        "Happy to assist!",
+        "Glad I could support you in your therapy management."
       ]
     },
     {
-      "tag": "report_incident",
+      "tag": "case_allocation",
       "patterns": [
-        "I want to report a crime",
-        "How do I report an incident?",
-        "I need to file a report",
-        "Can I report something suspicious?",
-        "I witnessed a crime"
+        "How do I allocate a case?",
+        "Can I assign a patient to a therapist?",
+        "I need to allocate a new case",
+        "How do I start a new case?"
       ],
       "responses": [
-        "You can report an incident by going to report a crime Page. There You need to provide details about the incident."
+        "You can allocate a case by navigating to the 'Case Allocation' page, where you can assign patients to therapists."
       ]
     },
     {
-      "tag": "emergency_services",
+      "tag": "therapy_plan_creation",
       "patterns": [
-        "This is an emergency",
-        "I need immediate help",
-        "Call the police",
-        "Emergency situation",
-        "Can you help with an emergency?"
+        "How do I create a therapy plan?",
+        "I need to prepare a therapy plan",
+        "Where can I set therapy goals?",
+        "How do I start planning therapy?"
       ],
       "responses": [
-        "If this is an emergency, please go to resources page immediately.",
-        "Immediate assistance feature will be available soon.",
-        "We’re here to help. Please go to resources page?"
+        "To create a therapy plan, go to the 'Therapy Plan' page where you can set goals and activities for your patients."
       ]
     },
     {
-      "tag": "anonymous_report",
+      "tag": "supervisor_review",
       "patterns": [
-        "Can I report anonymously?",
-        "I want to report a crime without revealing my identity",
-        "How do I report something without giving my name?",
-        "Can I file a report anonymously?"
+        "How do I review a therapy plan?",
+        "Where can I give feedback on a therapy plan?",
+        "I need to approve a therapy plan",
+        "How do I provide input on a therapy plan?"
       ],
       "responses": [
-        "Yes, you can report anonymously. Go to report a crime page and select report anonymously.",
-        "Your anonymity is protected. Just go to report a crime page and choose to report anonymously.",
-        "Feel free to share the details without revealing your identity. Just go to report a crime page and select report anonymously."
+        "You can review and provide input on therapy plans by visiting the 'Supervisor Review' page."
       ]
     },
     {
-      "tag": "case_status",
+      "tag": "progress_report",
       "patterns": [
-        "What’s the status of my case?",
-        "How can I check the progress of my report?",
-        "Is there an update on my case?",
-        "I need to know the status of my report"
+        "How do I write a progress report?",
+        "I need to submit a therapy progress report",
+        "Where can I update therapy progress?",
+        "How do I document therapy sessions?"
       ],
       "responses": [
-        "You can see your total cases, open cases, and closed cases on the dashboard."
+        "Progress reports can be created and submitted on the 'Progress Report' page after completing at least ten therapy sessions."
       ]
     },
     {
-      "tag": "community_alerts",
+      "tag": "clinical_evaluation",
       "patterns": [
-        "Are there any alerts in my area?",
-        "What’s the current situation in my neighborhood?",
-        "Any community warnings?",
-        "Any safety alerts I should know about?"
+        "How do I evaluate a therapy case?",
+        "Where can I provide clinical ratings?",
+        "I need to evaluate therapy outcomes",
+        "How do I assess therapy effectiveness?"
       ],
       "responses": [
-        "Click on notifications button to see the latest alerts in your area.",
-        "Stay informed! Check the notifications for the latest updates in your neighborhood."
-      ]
-    },
-    {
-      "tag": "crime_map",
-      "patterns": [
-        "Can I see a crime map?",
-        "Where are the crime hotspots?",
-        "Show me the crime map",
-        "Where should I be cautious?"
-      ],
-      "responses": [
-        "Go to crime map page to view the crime hotspots in your area.",
-        "Stay informed about crime hotspots by checking the crime map page.",
-        "You can view the crime map to see the areas to be cautious about."
-      ]
-    },
-    {
-      "tag": "police_station_locator",
-      "patterns": [
-        "Where’s the nearest police station?",
-        "Find a police station near me",
-        "Locate the closest police station",
-        "Where can I find the police station?"
-      ],
-      "responses": [
-        "Go to police station locator page to find the nearest police station.",
-        "Locate the closest police station by visiting the police station locator page.",
-        "Find the police station nearest to you by using the police station locator."
-      ]
-    },
-    {
-      "tag": "lost_and_found",
-      "patterns": [
-        "I lost something, can you help?",
-        "How do I report lost items?",
-        "Can I check if my lost item was found?",
-        "I found something, where do I report it?"
-      ],
-      "responses": [
-        "You can report lost or found items on the report crime page."
-      ]
-    },
-    {
-      "tag": "resources_and_information",
-      "patterns": [
-        "What resources do you have?",
-        "Can I get information on safety tips?",
-        "Where can I find legal advice?",
-        "What information can you provide?"
-      ],
-      "responses": [
-        "We have a range of resources available. Just go to resources page.",
-        "You can find safety tips, legal advice, and more on our resources page."
+        "You can perform clinical evaluations and provide ratings on the 'Clinical Evaluation' page."
       ]
     },
     {
       "tag": "feedback_and_complaints",
       "patterns": [
-        "I want to give feedback",
-        "How do I file a complaint?",
-        "Can I submit a suggestion?",
-        "Where do I report an issue with the service?"
+        "How do I give feedback?",
+        "I want to submit a complaint",
+        "Can I provide suggestions?",
+        "Where do I report an issue?"
       ],
       "responses": [
-        "We value your feedback. Please share your thoughts on feedpage page.",
-        "You can submit your complaint or suggestion on feedback page.",
-        "Your feedback is important to us. Please let us know how we can improve on feedback page."
+        "Feedback and complaints can be submitted through the 'Feedback' page."
       ]
     },
     {
       "tag": "user_accounts",
       "patterns": [
         "How do I create an account?",
-        "I’m having trouble logging in",
+        "I'm having trouble logging in",
         "Can I update my profile?",
         "How do I reset my password?"
       ],
       "responses": [
-        "To create an account, follow these steps: 1. Go to the sign-up page. 2. Fill in your details. 3. Click on 'Create Account'. 4. Verify your email address. 5. You’re all set!]",
-        "If you’re having trouble logging in, try resetting your password.",
-        "You can update your profile information in the account settings.",
-        "To reset your password, click on 'Forgot Password' and follow the instructions."
+        "To create an account, go to the 'Sign-Up' page. For logging in issues, try resetting your password or visit the 'Login Help' page."
       ]
     },
     {
@@ -188,12 +123,12 @@
         "Can you help me?",
         "I need assistance",
         "How do I use this service?",
-        "I’m not sure what to do"
+        "I'm not sure what to do"
       ],
       "responses": [
-        "I’m here to help! What do you need assistance with?",
-        "Sure, I can help. What’s the issue you’re facing?",
-        "Let’s work through this together. What do you need help with?"
+        "I'm here to help! What do you need assistance with?",
+        "Sure, I can help. What is the issue you are facing?",
+        "Let us work through this together. What do you need help with?"
       ]
     }
   ]

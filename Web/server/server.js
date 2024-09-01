@@ -9,7 +9,7 @@ import patientRoutes from "./routes/patient.route.js"
 import userRoutes from "./routes/user.route.js"
 import sessionRoutes from "./routes/session.route.js"
 
-import messageBotRoutes from "./routes/messagesBot.route.js";
+import messageBotRoutes from "./routes/messageBot.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
