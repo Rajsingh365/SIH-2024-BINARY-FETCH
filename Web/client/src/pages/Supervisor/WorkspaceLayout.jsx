@@ -8,7 +8,7 @@ export const WorkspaceLayout = () => {
       <SupervisorContextProvider>
         <div className="sp-workspace flex">
           <Sidebar />
-          <div className="main-content bg-gray-500 text-white w-full">
+          <div className="main-content bg-gradient-to-b from-gray-800 via-gray-900 to-black text-white w-full">
             <Outlet />
           </div>
         </div>
@@ -16,3 +16,4 @@ export const WorkspaceLayout = () => {
     </>
   );
 };
+

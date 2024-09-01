@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
@@ -42,21 +41,22 @@ const Signup = () => {
     }
     console.log('formData:', formData);
 
+
     try {
       await axios.post('http://localhost:5000/api/auth/signup', formData);
       toast.success('User registered successfully');
-      if(role=="admin"){
+      if(selectedRole=="admin"){
         navigate('/admin/dashboard');
       }
-      else if(role=="supervisor"){
+      else if(selectedRole=="supervisor"){
         navigate('/supervisor/workspace');
       }
       else{
         navigate('/therapist/workspace');
       }
     } catch (error) {
-      alert('Error registering user');
       toast.error('Error registering user');
+      console.log('Error:', error.message);
     }
   };
 

@@ -3,12 +3,21 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import useSpeechRecognition from '../../hooks/useSpeechRecognition';
 
 const SessionForm = () => {
   const navigate = useNavigate();
   const { patientId } = useParams();
   const [patient, setPatient] = useState({});
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [formData, setFormData] = useState({
+    activitiesPerformed: '',
+    patientResponse: '',
+    notes: '',
+    progress: '',
+    summary: '',
+    nextSteps: '',
+  });
 
   useEffect(() => {
     const getPatient = async () => {
@@ -29,13 +38,7 @@ const SessionForm = () => {
       patient: patientId,
       therapist: "66d3b2a7bed7d26d01a929ee",
       date: selectedDate.toISOString().split("T")[0],
-      activitiesPerformed: e.target.activitiesPerformed.value,
-      patientResponse: e.target.patientResponse.value,
-      notes: e.target.notes.value,
-      progress: e.target.progress.value,
-      summary: e.target.summary.value,
-      nextSteps: e.target.nextSteps.value,
-      mood: e.target.mood.value,
+      ...formData,
     };
     try {
       const sessionResponse = await axios.post(`http://localhost:5000/api/session/add-session-for-patient/${patientId}`, data);
@@ -46,6 +49,20 @@ const SessionForm = () => {
       console.error("Error saving session data:", error);
     }
   };
+
+  const handleSpeechResult = (field) => (result) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: result,
+    }));
+  };
+
+  const { startListening: startListeningActivities } = useSpeechRecognition(handleSpeechResult('activitiesPerformed'));
+  const { startListening: startListeningResponse } = useSpeechRecognition(handleSpeechResult('patientResponse'));
+  const { startListening: startListeningNotes } = useSpeechRecognition(handleSpeechResult('notes'));
+  const { startListening: startListeningProgress } = useSpeechRecognition(handleSpeechResult('progress'));
+  const { startListening: startListeningSummary } = useSpeechRecognition(handleSpeechResult('summary'));
+  const { startListening: startListeningNextSteps } = useSpeechRecognition(handleSpeechResult('nextSteps'));
 
   return (
     <main className="flex-1 p-6 bg-gray-900 text-white">
@@ -105,73 +122,37 @@ const SessionForm = () => {
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="activitiesPerformed">
-              Activities Performed
-            </label>
-            <textarea
-              id="activitiesPerformed"
-              name="activitiesPerformed"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
-            ></textarea>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="patientResponse">
-              Patient Response
-            </label>
-            <textarea
-              id="patientResponse"
-              name="patientResponse"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
-            ></textarea>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="notes">
-              Session Notes
-            </label>
-            <textarea
-              id="notes"
-              name="notes"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
-            ></textarea>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="progress">
-              Progress
-            </label>
-            <input
-              type="text"
-              id="progress"
-              name="progress"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="summary">
-              Summary
-            </label>
-            <textarea
-              id="summary"
-              name="summary"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
-            ></textarea>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="nextSteps">
-              Next Steps
-            </label>
-            <input
-              type="text"
-              id="nextSteps"
-              name="nextSteps"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
+          {['activitiesPerformed', 'patientResponse', 'notes', 'progress', 'summary', 'nextSteps'].map((field) => (
+            <div key={field} className="mb-4">
+              <label className="block text-sm font-bold mb-2" htmlFor={field}>
+                {field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+              </label>
+              <textarea
+                id={field}
+                name={field}
+                value={formData[field]}
+                onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const speechRecognition = {
+                    activitiesPerformed: startListeningActivities,
+                    patientResponse: startListeningResponse,
+                    notes: startListeningNotes,
+                    progress: startListeningProgress,
+                    summary: startListeningSummary,
+                    nextSteps: startListeningNextSteps,
+                  }[field];
+                  speechRecognition();
+                }}
+                className="mt-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Speak {field.replace(/([A-Z])/g, ' $1')}
+              </button>
+            </div>
+          ))}
 
           <div className="mb-4">
             <label className="block text-sm font-bold mb-2" htmlFor="mood">

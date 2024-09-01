@@ -1,0 +1,200 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Good day",
+        "Hey",
+        "Is anyone there?"
+      ],
+      "responses": [
+        "Hello, how can I assist you today?",
+        "Hi there, what can I help you with?",
+        "Good day! How can I be of service?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Goodbye", "See you later", "Thanks, bye", "Bye"],
+      "responses": [
+        "Take care, and stay safe!",
+        "Goodbye! If you need further help, we're here for you.",
+        "Bye! Don't hesitate to reach out if you need anything else."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thank you", "Thanks a lot", "Much appreciated", "Thanks"],
+      "responses": [
+        "You're welcome!",
+        "Happy to help!",
+        "Glad I could assist you!"
+      ]
+    },
+    {
+      "tag": "report_incident",
+      "patterns": [
+        "I want to report a crime",
+        "How do I report an incident?",
+        "I need to file a report",
+        "Can I report something suspicious?",
+        "I witnessed a crime"
+      ],
+      "responses": [
+        "You can report an incident by going to report a crime Page. There You need to provide details about the incident."
+      ]
+    },
+    {
+      "tag": "emergency_services",
+      "patterns": [
+        "This is an emergency",
+        "I need immediate help",
+        "Call the police",
+        "Emergency situation",
+        "Can you help with an emergency?"
+      ],
+      "responses": [
+        "If this is an emergency, please go to resources page immediately.",
+        "Immediate assistance feature will be available soon.",
+        "We’re here to help. Please go to resources page?"
+      ]
+    },
+    {
+      "tag": "anonymous_report",
+      "patterns": [
+        "Can I report anonymously?",
+        "I want to report a crime without revealing my identity",
+        "How do I report something without giving my name?",
+        "Can I file a report anonymously?"
+      ],
+      "responses": [
+        "Yes, you can report anonymously. Go to report a crime page and select report anonymously.",
+        "Your anonymity is protected. Just go to report a crime page and choose to report anonymously.",
+        "Feel free to share the details without revealing your identity. Just go to report a crime page and select report anonymously."
+      ]
+    },
+    {
+      "tag": "case_status",
+      "patterns": [
+        "What’s the status of my case?",
+        "How can I check the progress of my report?",
+        "Is there an update on my case?",
+        "I need to know the status of my report"
+      ],
+      "responses": [
+        "You can see your total cases, open cases, and closed cases on the dashboard."
+      ]
+    },
+    {
+      "tag": "community_alerts",
+      "patterns": [
+        "Are there any alerts in my area?",
+        "What’s the current situation in my neighborhood?",
+        "Any community warnings?",
+        "Any safety alerts I should know about?"
+      ],
+      "responses": [
+        "Click on notifications button to see the latest alerts in your area.",
+        "Stay informed! Check the notifications for the latest updates in your neighborhood."
+      ]
+    },
+    {
+      "tag": "crime_map",
+      "patterns": [
+        "Can I see a crime map?",
+        "Where are the crime hotspots?",
+        "Show me the crime map",
+        "Where should I be cautious?"
+      ],
+      "responses": [
+        "Go to crime map page to view the crime hotspots in your area.",
+        "Stay informed about crime hotspots by checking the crime map page.",
+        "You can view the crime map to see the areas to be cautious about."
+      ]
+    },
+    {
+      "tag": "police_station_locator",
+      "patterns": [
+        "Where’s the nearest police station?",
+        "Find a police station near me",
+        "Locate the closest police station",
+        "Where can I find the police station?"
+      ],
+      "responses": [
+        "Go to police station locator page to find the nearest police station.",
+        "Locate the closest police station by visiting the police station locator page.",
+        "Find the police station nearest to you by using the police station locator."
+      ]
+    },
+    {
+      "tag": "lost_and_found",
+      "patterns": [
+        "I lost something, can you help?",
+        "How do I report lost items?",
+        "Can I check if my lost item was found?",
+        "I found something, where do I report it?"
+      ],
+      "responses": [
+        "You can report lost or found items on the report crime page."
+      ]
+    },
+    {
+      "tag": "resources_and_information",
+      "patterns": [
+        "What resources do you have?",
+        "Can I get information on safety tips?",
+        "Where can I find legal advice?",
+        "What information can you provide?"
+      ],
+      "responses": [
+        "We have a range of resources available. Just go to resources page.",
+        "You can find safety tips, legal advice, and more on our resources page."
+      ]
+    },
+    {
+      "tag": "feedback_and_complaints",
+      "patterns": [
+        "I want to give feedback",
+        "How do I file a complaint?",
+        "Can I submit a suggestion?",
+        "Where do I report an issue with the service?"
+      ],
+      "responses": [
+        "We value your feedback. Please share your thoughts on feedpage page.",
+        "You can submit your complaint or suggestion on feedback page.",
+        "Your feedback is important to us. Please let us know how we can improve on feedback page."
+      ]
+    },
+    {
+      "tag": "user_accounts",
+      "patterns": [
+        "How do I create an account?",
+        "I’m having trouble logging in",
+        "Can I update my profile?",
+        "How do I reset my password?"
+      ],
+      "responses": [
+        "To create an account, follow these steps: 1. Go to the sign-up page. 2. Fill in your details. 3. Click on 'Create Account'. 4. Verify your email address. 5. You’re all set!]",
+        "If you’re having trouble logging in, try resetting your password.",
+        "You can update your profile information in the account settings.",
+        "To reset your password, click on 'Forgot Password' and follow the instructions."
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "Can you help me?",
+        "I need assistance",
+        "How do I use this service?",
+        "I’m not sure what to do"
+      ],
+      "responses": [
+        "I’m here to help! What do you need assistance with?",
+        "Sure, I can help. What’s the issue you’re facing?",
+        "Let’s work through this together. What do you need help with?"
+      ]
+    }
+  ]
+}

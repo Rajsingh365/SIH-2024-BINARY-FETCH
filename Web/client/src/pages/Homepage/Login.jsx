@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -29,10 +28,8 @@ const Login = () => {
       } else {
         navigate("/therapist/dashboard");
       }
-      // console.log('Data:', data);
       console.log('worked');
     } catch (error) {
-      // alert("Error registering user");
       console.log('Error:', error);
       toast.error("Error registering user", error.message);
     }

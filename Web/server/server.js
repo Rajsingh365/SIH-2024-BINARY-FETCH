@@ -9,6 +9,8 @@ import patientRoutes from "./routes/patient.route.js"
 import userRoutes from "./routes/user.route.js"
 import sessionRoutes from "./routes/session.route.js"
 
+import messageBotRoutes from "./routes/messagesBot.route.js";
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(express.json()); 
@@ -19,7 +21,8 @@ app.use("/api/therapy-plans",planRoutes);
 app.use('/api/patient',patientRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/session",sessionRoutes);
-// app.use("/api/itineraries",itineraryRoutes);
+app.use("/api/message", messageBotRoutes);
+
 app.get("/",(req,res)=>{
   res.json({message: "Hello world"});
 })

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SupervisorDashboardNavbar = () => {
   return (
@@ -25,8 +26,9 @@ const SupervisorDashboardNavbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
+          
             <li>
-              <a>Workspace</a>
+              <Link to={"/supervisor/workspace"}>Workspace</Link>
             </li>
             <li>
               <a>Profile</a>
