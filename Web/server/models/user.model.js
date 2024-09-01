@@ -21,9 +21,9 @@ const userSchema = new mongoose.Schema(
       enum: ["therapist", "supervisor", "admin"],
       default: "therapist",
     },
-    additionalinfo: {
+    additionalInfo: {
       type: Object,
-      default: {}
+      default: {} 
     }
   },
   { timestamps: true }

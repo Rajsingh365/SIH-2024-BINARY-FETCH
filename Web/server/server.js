@@ -10,13 +10,10 @@ import planRoutes from "./routes/therapyplan.route.js"
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(express.json()); 
-// app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
 app.use("/api/auth",authRoutes);
-app.use("/api/plan",planRoutes);
-// app.use("/api/user",userRoutes);
-// app.use("/api/itineraries",itineraryRoutes);
+app.use("/api/therapy-plans",planRoutes);
 
 app.get("/",(req,res)=>{
   res.json({message: "Hello world"});
