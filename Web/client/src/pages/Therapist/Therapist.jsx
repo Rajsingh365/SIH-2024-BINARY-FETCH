@@ -11,7 +11,7 @@ const Therapist = () => {
   const [currentItem, setCurrentItem]=useState("Cases")
   const navigate = useNavigate()
   useEffect(()=>{
-    navigate('/therapist/workspace/session-list')
+    // navigate('/therapist/workspace/case-list')
   },[])
   const handleItemClick=(item)=>{
     setCurrentItem(item)
@@ -40,7 +40,7 @@ const Therapist = () => {
 
             <li className={`${currentItem === "Cases"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
               <Link
-                to={'/therapist/workspace/session-list'}
+                to={'/therapist/workspace/case-list'}
                 className="flex items-center p-2 rounded-lg group"
                 onClick={()=>handleItemClick("Cases")}
               >
@@ -52,7 +52,7 @@ const Therapist = () => {
 
             <li className={`${currentItem === "Therapy Progress"?" bg-[#34cab6] rounded-md hover:bg-[#00f9d8] text-black": "hover:bg-gray-700"}`}>
               <Link
-                to={'/therapist/workspace/session-list'}
+                to={'/therapist/workspace/therapy-list'}
                 className="flex items-center p-2 rounded-lg group"
                 onClick={()=>handleItemClick("Therapy Progress")}
               >

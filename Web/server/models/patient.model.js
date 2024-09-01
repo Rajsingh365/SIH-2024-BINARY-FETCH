@@ -34,18 +34,28 @@ const patientSchema = new mongoose.Schema(
         ref: 'Session',
       },
     ],
+    gender: {
+      type: String,
+      required: true,
+      enums: ["male", "female"]
+    },
     assigned_therapist_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
     caseDetails: {
       type: String,
-      default: "",
+      default: "",  
     },
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+    }
   },
   { timestamps: true }
-);
+);  
 
 const Patient = mongoose.model("Patient", patientSchema);
 
 export default Patient;
+

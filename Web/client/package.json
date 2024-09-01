@@ -17,13 +17,16 @@
     "@heroicons/react": "^2.1.5",
     "axios": "^1.7.5",
     "chart.js": "^4.4.4",
+    "date-fns": "^3.6.0",
     "flowbite": "^2.5.1",
     "flowbite-react": "^0.10.1",
+    "fortawesome": "^0.0.1-security",
     "framer-motion": "^11.3.30",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",
+    "react-fontawesome": "^1.7.1",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.26.1",
     "recharts": "^2.12.7"
@@ -41,6 +44,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "postcss": "^8.4.41",
+    "postcss-cli": "^11.0.0",
     "tailwindcss": "^3.4.10",
     "vite": "^5.4.1"
   }
