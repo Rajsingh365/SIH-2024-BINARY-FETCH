@@ -5,26 +5,21 @@ import generateToken from "../utils/generateToken.util.js";
 
 export const signUp = async (req, res) => {
   try {
-    const { fullName, username, password, confirmPassword, role } = req.body;
+    const { fullName, username, email, password, role, additionalInfo } = req.body;
 
-
-    if (password !== confirmPassword) {
-      return res.status(400).json({ error: "Passwords don't match" });
-    }
-
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ error: "Username already exists" });
     }
     const hashPassword = await bcrypt.hash(password, 10);
 
-
-
     const newUser = await User.create({
       fullName,
       username,
+      email,
       password: hashPassword,
-      role
+      role,
+      additionalInfo,
     })
 
     if (newUser) {
@@ -33,8 +28,10 @@ export const signUp = async (req, res) => {
         _id: newUser._id,
         fullName: newUser.fullName,
         username: newUser.username,
+        email: newUser.email,
         role: newUser.role,
-        token
+        additionalInfo: newUser.additionalInfo,
+        token, 
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
@@ -47,25 +44,25 @@ export const signUp = async (req, res) => {
 
 export const logIn = async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
     const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
-
     if (!user || !isPasswordCorrect) {
-      return res.status(400).json({ error: "Invalid username or password" });
+      return res.status(400).json({ error: "Invalid email or password" });
     }
-
-
+    
     const token = generateToken(user._id, res);
-
+    
+    
     res.status(200).json({
       _id: user._id,
       fullName: user.fullName,
       username: user.username,
+      email: user.email,
       role: user.role,
+      additionalInfo: user.additionalInfo,
       token
     });
-
   } catch (error) {
     console.log("Error in login controller", error.message);
     res.status(500).json({ error: "Internal Server Error" });

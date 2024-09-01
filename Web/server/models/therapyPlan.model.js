@@ -17,6 +17,9 @@ const therapyPlanSchema = new mongoose.Schema({
   },
   priority: {
     type: String,
+  },
+  submissionDate: {
+    type: Date,
     required: true
   },
   goals: {
@@ -52,13 +55,14 @@ const therapyPlanSchema = new mongoose.Schema({
   ],
   attachments: [
     {
-      type: String
+      type: String,
+      default: "Review.pdf"
     }
   ],
   reviewDate: {
     type: Date
   },
-  feedback: {
+  feedback: { 
     type: String,
     default: ""
   }

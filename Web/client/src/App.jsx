@@ -1,20 +1,22 @@
 import React from "react";
+import { Toaster } from "react-hot-toast";
+
 import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
-import {TherapistDashboard} from "./pages/Therapist/index.js";
 import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, ReviewPlan, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
-import ProgressReport from "./pages/Therapist/ProgressReport";
-import TherapistProgressReportList from "./pages/Therapist/ProgressReportList";
-import SessionForm from "./pages/Therapist/SessionForm.jsx";
-import SessionFormList from "./pages/Therapist/SessionFormList.jsx";
-import Therapist from "./pages/Therapist/Therapist.jsx";
+import {TherapistDashboard, Therapist, SessionFormList,SessionForm,TherapistProgressReportList, ProgressReport, IndividualSessionInformation, TherapyList, TherapyPage, NotificationFeed,CreateTherapyPlan,TherapyPlanStatus } from "./pages/Therapist";
+import {LandingPage, Signup, Login} from "./pages/Homepage";  
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
+      {
+        path: "/",
+        element: <LandingPage />,
+      },
       {
         path: "/admin",
         children: [
@@ -86,7 +88,7 @@ const router = createBrowserRouter([
             element: <Therapist />,
             children: [
               {
-                path: "progress-report",
+                path: "progress-report/:patientId",
                 element: <ProgressReport />,
               },
               {
@@ -98,9 +100,29 @@ const router = createBrowserRouter([
                 element: <SessionFormList />,
               },
               {
-                path: "session-form/",
+                path: "session-form/:patientId",
                 element: <SessionForm />,
               },
+              {
+                path: "individual-session-information/:sessionId",
+                element: <IndividualSessionInformation />,
+              },
+              {
+                path: "therapy-list",
+                element: <TherapyList />,
+              },
+              {
+                path: "therapy-page/:therapyId",
+                element: <TherapyPage />,
+              },
+              {
+                path: "create-therapy-plan/:patientId",
+                element: <CreateTherapyPlan />,
+              },
+              {
+                path: "therapy-plan-status/",
+                element: <TherapyPlanStatus />,
+              }
             ],
           },
         ],
