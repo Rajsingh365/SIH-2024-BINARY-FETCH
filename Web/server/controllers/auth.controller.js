@@ -6,11 +6,15 @@ import generateToken from "../utils/generateToken.util.js";
 export const signUp = async (req, res) => {
   try {
     const { fullName, username, email, password, role, additionalInfo } = req.body;
+    console.log("req.body", req.body);
 
     const user = await User.findOne({ email });
+
     if (user) {
       return res.status(400).json({ error: "Username already exists" });
     }
+    
+    console.log('user also find');
     const hashPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
@@ -21,7 +25,6 @@ export const signUp = async (req, res) => {
       role,
       additionalInfo,
     })
-
     if (newUser) {
       const token = generateToken(newUser._id, res);
       res.status(201).json({

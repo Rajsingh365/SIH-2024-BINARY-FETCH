@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import useSpeechRecognition from '../../hooks/useSpeechRecognition';
 
 const CreateTherapyPlan = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const CreateTherapyPlan = () => {
     attachments: [],
     feedback: "",
   });
-  
+
   useEffect(() => {
     const getPatient = async () => {
       try {
@@ -47,25 +48,39 @@ const CreateTherapyPlan = () => {
       therapist: "66d3b2a7bed7d26d01a929ee",  
       submissionDate: new Date(),
       reviewDate: reviewDate,
-      goals: e.target.goals.value,
-      duration: e.target.duration.value,
-      priority: e.target.priority.value,
-      activities: e.target.activities.value,
-      patientHistory: e.target.patientHistory.value,
-      additionalNotes: e.target.additionalNotes.value,
+      goals: formData.goals,
+      duration: formData.duration,
+      priority: formData.priority,
+      activities: formData.activities,
+      patientHistory: formData.patientHistory,
+      additionalNotes: formData.additionalNotes,
       milestones: formData.milestones,
       attachments: formData.attachments,
+      feedback: formData.feedback,
     };
 
-    console.log('data', data);
     try {
       await axios.post(`http://localhost:5000/api/plan/create-plan/`, data);
       console.log('Plan created successfully');
-      // navigate(`/therapist/workspace/patient-plans/${patientId}`);
+      navigate(`/therapist/workspace/patient-plans/${patientId}`);
     } catch (error) {
       console.error("Error creating therapy plan:", error);
     }
   };
+
+  const handleSpeechResult = (field) => (result) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: result,
+    }));
+  };
+
+  const { startListening: startListeningGoals } = useSpeechRecognition(handleSpeechResult('goals'));
+  const { startListening: startListeningDuration } = useSpeechRecognition(handleSpeechResult('duration'));
+  const { startListening: startListeningActivities } = useSpeechRecognition(handleSpeechResult('activities'));
+  const { startListening: startListeningPatientHistory } = useSpeechRecognition(handleSpeechResult('patientHistory'));
+  const { startListening: startListeningAdditionalNotes } = useSpeechRecognition(handleSpeechResult('additionalNotes'));
+  const { startListening: startListeningFeedback } = useSpeechRecognition(handleSpeechResult('feedback'));
 
   return (
     <main className="flex-1 p-6 bg-gray-900 text-white">
@@ -100,9 +115,18 @@ const CreateTherapyPlan = () => {
             <textarea
               id="goals"
               name="goals"
+              value={formData.goals}
+              onChange={(e) => setFormData({ ...formData, goals: e.target.value })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
               required
             ></textarea>
+            <button
+              type="button"
+              onClick={startListeningGoals}
+              className="mt-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Speak Goals
+            </button>
           </div>
 
           {/* Duration */}
@@ -114,9 +138,18 @@ const CreateTherapyPlan = () => {
               type="text"
               id="duration"
               name="duration"
+              value={formData.duration}
+              onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
+            <button
+              type="button"
+              onClick={startListeningDuration}
+              className="mt-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Speak Duration
+            </button>
           </div>
 
           {/* Review Date */}
@@ -143,6 +176,8 @@ const CreateTherapyPlan = () => {
             <select
               id="priority"
               name="priority"
+              value={formData.priority}
+              onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             >
@@ -161,9 +196,18 @@ const CreateTherapyPlan = () => {
             <textarea
               id="activities"
               name="activities"
+              value={formData.activities}
+              onChange={(e) => setFormData({ ...formData, activities: e.target.value })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
               required
             ></textarea>
+            <button
+              type="button"
+              onClick={startListeningActivities}
+              className="mt-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Speak Activities
+            </button>
           </div>
 
           {/* Patient History */}
@@ -174,9 +218,18 @@ const CreateTherapyPlan = () => {
             <textarea
               id="patientHistory"
               name="patientHistory"
+              value={formData.patientHistory}
+              onChange={(e) => setFormData({ ...formData, patientHistory: e.target.value })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
               required
             ></textarea>
+            <button
+              type="button"
+              onClick={startListeningPatientHistory}
+              className="mt-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Speak Patient History
+            </button>
           </div>
 
           {/* Additional Notes */}
@@ -187,8 +240,40 @@ const CreateTherapyPlan = () => {
             <textarea
               id="additionalNotes"
               name="additionalNotes"
+              value={formData.additionalNotes}
+              onChange={(e) => setFormData({ ...formData, additionalNotes: e.target.value })}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
+              required
             ></textarea>
+            <button
+              type="button"
+              onClick={startListeningAdditionalNotes}
+              className="mt-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Speak Additional Notes
+            </button>
+          </div>
+
+          {/* Feedback */}
+          <div className="mb-4">
+            <label className="block text-sm font-bold mb-2" htmlFor="feedback">
+              Feedback
+            </label>
+            <textarea
+              id="feedback"
+              name="feedback"
+              value={formData.feedback}
+              onChange={(e) => setFormData({ ...formData, feedback: e.target.value })}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24"
+              required
+            ></textarea>
+            <button
+              type="button"
+              onClick={startListeningFeedback}
+              className="mt-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Speak Feedback
+            </button>
           </div>
 
           {/* Milestones */}
@@ -199,52 +284,40 @@ const CreateTherapyPlan = () => {
             {formData.milestones.map((milestone, index) => (
               <div key={index} className="mb-4">
                 <input
-                  type="number"
-                  placeholder="Week"
-                  value={milestone.week || ''}
-                  onChange={(e) => handleMilestonesChange(index, 'week', e.target.value)}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2"
-                />
-                <input
                   type="text"
-                  placeholder="Milestone Description"
-                  value={milestone.milestone || ''}
-                  onChange={(e) => handleMilestonesChange(index, 'milestone', e.target.value)}
+                  placeholder="Milestone Title"
+                  value={milestone.title || ''}
+                  onChange={(e) => handleMilestonesChange(index, 'title', e.target.value)}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  required
                 />
+                <textarea
+                  placeholder="Milestone Description"
+                  value={milestone.description || ''}
+                  onChange={(e) => handleMilestonesChange(index, 'description', e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24 mt-2"
+                  required
+                ></textarea>
               </div>
             ))}
             <button
               type="button"
-              onClick={() => setFormData({ ...formData, milestones: [...formData.milestones, { week: '', milestone: '' }] })}
-              className="mt-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => setFormData({ ...formData, milestones: [...formData.milestones, { title: '', description: '' }] })}
+              className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Add Milestone
             </button>
           </div>
 
-          {/* Attachments */}
+          {/* Submit Button */}
           <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="attachments">
-              Attachments
-            </label>
-            <input
-              type="file"
-              id="attachments"
-              name="attachments"
-              multiple
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={(e) => setFormData({ ...formData, attachments: Array.from(e.target.files) })}
-            />
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Save Therapy Plan
+            </button>
           </div>
-
-
-          <button
-            type="submit"
-            className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Create Plan
-          </button>
         </form>
       </div>
     </main>
