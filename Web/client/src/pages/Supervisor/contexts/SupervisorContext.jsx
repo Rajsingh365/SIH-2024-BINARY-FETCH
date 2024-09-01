@@ -15,18 +15,27 @@ export const SupervisorContextProvider = ({ children }) => {
   const [progressReports, setProgressReports] = useState([]);
 
   const [clinicalRatings, setClinicalRatings] = useState([]);
+  const [awaitStatus,setAwaitStatus] = useState([]);
 
   const fetchTherapyPlans = async () => {
-    const response = await axios.get("http://localhost:8080/therapyPlans");
+    const response = await axios.get("http://localhost:5000/api/therapy-plans");
+
 
     let plans = response.data;
+    console.log(plans);
 
     plans = plans.filter((item) => {
       if (isNewPlans) {
         return item.status == "Awaiting Review";
       }
-      return item.status == "Under Revision";
+      return item.status != "Awaiting Review";
     });
+
+    let awaitSt;
+    awaitSt = plans.map((plan) => {
+      return plan.status;
+    })
+    setAwaitStatus(awaitSt);
 
     if (priority == "low" || priority == "medium" || priority == "high") {
       plans = plans.filter((item) => item.priority.toLowerCase() == priority);
@@ -53,7 +62,7 @@ export const SupervisorContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchTherapyPlans();
-  }, [time, priority, isNewPlans]);
+  }, [time, priority, isNewPlans,awaitStatus]);
 
   const fetchSessionNotes = async () => {
     const response = await axios.get("http://localhost:8080/sessionNotes");

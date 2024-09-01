@@ -3,7 +3,7 @@ import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
 import {TherapistDashboard} from "./pages/Therapist/index.js";
-import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
+import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, ReviewPlan, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
 import ProgressReport from "./pages/Therapist/ProgressReport";
 import TherapistProgressReportList from "./pages/Therapist/ProgressReportList";
 import SessionForm from "./pages/Therapist/SessionForm.jsx";
@@ -61,6 +61,10 @@ const router = createBrowserRouter([
               {
                 path: "therapy-plans",
                 element: <TherapyPlanList />,
+              },
+              {
+                path: "therapy-plans/review/:planId",
+                element: <ReviewPlan />
               },
               {
                 path: "clinical-rating",
