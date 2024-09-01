@@ -35,6 +35,15 @@ const sessionSchema = new mongoose.Schema(
     summary: {
       type: String,
       required: true
+    },
+    nextSteps: {
+      type: String,
+      required: true
+    },
+    mood: {
+      type: String,
+      required: true,
+      enums: ["Happy", "Sad", "Angry", "Neutral"]
     }
   },
   { timestamps: true }

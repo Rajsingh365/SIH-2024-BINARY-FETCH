@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
     },
     additionalinfo: {
       type: Object,
-      default: {}
+      default: {} 
     }
   },
   { timestamps: true }
