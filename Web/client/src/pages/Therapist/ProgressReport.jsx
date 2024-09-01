@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -10,10 +10,28 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { format } from 'date-fns';
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Title, Tooltip, Legend);
 
 const ProgressReport = () => {
+  const { patientId } = useParams();
+  const [patient, setPatient] = useState([]);
+  useEffect(() => {
+    const patientData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/patient/get-patient/${patientId}`);
+        setPatient(response.data);
+        console.log('Patient from individual:', response.data);
+      } catch (error) {
+        console.error("Error fetching patient data:", error);
+      }
+    }
+    patientData();
+  }, []); 
+
   const report = {
     name: 'Patient 1',
     conditionBefore: 'Mild stutter',
@@ -48,19 +66,24 @@ const ProgressReport = () => {
     }
   };
 
+  const formatDate = (date) => format(new Date(date), 'dd-MM-yyyy');
+  // console.log('date', formatDate(patient.createdAt));
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 flex flex-col lg:flex-row p-6">
       {/* Patient Information Section */}
       <section className="bg-gray-800 p-8 rounded-lg mb-6 shadow-lg w-full">
         <h2 className="text-3xl font-bold mb-6 text-teal-400">Patient Progress Report</h2>
-        
+        {patient ? (
         <div className="mb-8">
           <h3 className="text-xl font-semibold mb-2 text-gray-100">Patient Information</h3>
-          <p className="text-lg mb-2"><span className="font-semibold">Name:</span> {report.name}</p>
-          <p className="text-lg mb-2"><span className="font-semibold">Condition Before:</span> {report.conditionBefore}</p>
-          <p className="text-lg mb-2"><span className="font-semibold">Condition After:</span> {report.conditionAfter}</p>
-          <p className="text-lg mb-6"><span className="font-semibold">Date:</span> {report.date}</p>
+          <p className="text-lg mb-2"><span className="font-semibold">Name:</span> {patient.name}</p>
+          <p className="text-lg mb-2"><span className="font-semibold">Condition Before:</span> {patient.additionalInfo ? patient.additionalInfo.conditionBeforeTherapy : 'N/A'}</p>
+          <p className="text-lg mb-2"><span className="font-semibold">Condition After:</span> {patient.additionalInfo ? patient.additionalInfo.conditionAfterTherapy : 'N/A'}</p>
+          <p className="text-lg mb-6"><span className="font-semibold">Date:</span> {formatDate(new Date())}</p>
         </div>
+      ) : (
+        <h1>Loading...</h1>
+      )}
 
         {/* Progress Charts */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

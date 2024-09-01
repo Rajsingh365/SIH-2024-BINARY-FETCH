@@ -93,7 +93,7 @@ const router = createBrowserRouter([
             element: <Therapist />,
             children: [
               {
-                path: "progress-report",
+                path: "progress-report/:patientId",
                 element: <ProgressReport />,
               },
               {

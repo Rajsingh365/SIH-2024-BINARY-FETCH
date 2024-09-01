@@ -10,15 +10,21 @@ export const getAllPatients = async (req, res) => {
 
 export const getParticularPatient = async (req, res) => {
   try {
-    // console.log('getParticularPatient');
     const { id } = req.params;
+
     const patient = await Patient.findById(id);
+
+    if (!patient) {
+      return res.status(404).json({ message: 'Patient not found with this id' });
+    }
+
     res.status(200).json(patient);
+  } catch (error) {
+    console.error('Error fetching patient:', error);
+    res.status(500).json({ message: error.message });
   }
-  catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-}
+};
+
 export const addNewSessionForParticularPatient = async (req, res) => {
   const { id } = req.params;
   const {session_id} = req.body;
