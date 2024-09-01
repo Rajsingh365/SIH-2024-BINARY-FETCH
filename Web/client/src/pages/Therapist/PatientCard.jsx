@@ -35,14 +35,7 @@ const PatientCard = ({ patient }) => {
           </p>
         </div>
       </div>
-      <div className="bg-gray-700 p-4 flex justify-end space-x-2">
-        <button className="text-white bg-green-600 hover:bg-green-700 font-bold py-2 px-4 rounded">
-          ✅
-        </button>
-        <button className="text-white bg-red-600 hover:bg-red-700 font-bold py-2 px-4 rounded">
-          ❌
-        </button>
-      </div>
+      
     </div>
   );
 };
