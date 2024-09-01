@@ -38,8 +38,8 @@ const ProgressReport = () => {
     conditionAfter: 'Significant improvement',
     date: '2024-08-01',
     progress: [30, 50, 70, 90],
-    speechRate: [5, 6, 7, 8],
-    articulationAccuracy: [70, 75, 80, 85],
+    speechRate: [5,6.1, 6.8, 6.9],
+    articulationAccuracy: [70, 74, 77, 79],
   };
 
   const chartOptions = {

@@ -6,5 +6,9 @@ import SessionForm from "./SessionForm";
 import TherapistProgressReportList from "./ProgressReportList";
 import ProgressReport from "./ProgressReport";
 import IndividualSessionInformation from "./IndividualSessionInformation";
+import CaseList from "./CaseList";
+import CasePage from "./CasePage";
+import TherapyList from "./TherapyList";
+import TherapyPage from "./TherapyPage";
 
-export { TherapistDashboard, Therapist, SessionFormList,SessionForm,TherapistProgressReportList, ProgressReport, IndividualSessionInformation };
+export { TherapistDashboard, Therapist, SessionFormList,SessionForm,TherapistProgressReportList, ProgressReport, IndividualSessionInformation, TherapyList, TherapyPage, CaseList, CasePage, NotificationFeed };

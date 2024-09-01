@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
 import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
 
-import {TherapistDashboard, Therapist, SessionFormList,SessionForm,TherapistProgressReportList, ProgressReport,IndividualSessionInformation } from "./pages/Therapist";
+import {TherapistDashboard, Therapist, SessionFormList,SessionForm,TherapistProgressReportList, ProgressReport, IndividualSessionInformation, TherapyList, TherapyPage, CaseList, CasePage, NotificationFeed  } from "./pages/Therapist";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,22 +15,6 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
-            element: <Admin />,
-            children: [
-              {
-                path: "users",
-                element: <Users />,
-              },
-              {
-                path: "therapists",
-                element: <Therapists/>,
-              },
-              { 
-                path: "supervisors",
-                element: <Supervisors/>,
-              },
-            ],
-
             element: <Admin />,
             children: [
               {
@@ -111,6 +95,22 @@ const router = createBrowserRouter([
               {
                 path: "individual-session-information/:sessionId",
                 element: <IndividualSessionInformation />,
+              },
+              {
+                path: "case-list",
+                element: <CaseList />,
+              },
+              {
+                path: "case-page/:caseId",
+                element: <CasePage />,
+              },
+              {
+                path: "therapy-list",
+                element: <TherapyList />,
+              },
+              {
+                path: "therapy-page/:therapyId",
+                element: <TherapyPage />,
               }
             ],
           },
