@@ -10,7 +10,7 @@ export const getAllPatients = async (req, res) => {
 
 export const getParticularPatient = async (req, res) => {
   try {
-    console.log('getParticularPatient');
+    // console.log('getParticularPatient');
     const { id } = req.params;
     const patient = await Patient.findById(id);
     res.status(200).json(patient);

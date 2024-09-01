@@ -2,14 +2,9 @@ import React from "react";
 import { MainLayout } from "./pages/Layouts/MainLayout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {Admin, Supervisors, Therapists, Users} from './pages/Admin/index.js'
-import {TherapistDashboard} from "./pages/Therapist/index.js";
 import {SupervisorDashboard, ClinicalRatings, ProgressReportList, SessionList, TherapyPlanList, WorkspaceLayout,NotificationSupervisor } from "./pages/Supervisor";
-import ProgressReport from "./pages/Therapist/ProgressReport";
-import TherapistProgressReportList from "./pages/Therapist/ProgressReportList";
-import SessionForm from "./pages/Therapist/SessionForm.jsx";
-import SessionFormList from "./pages/Therapist/SessionFormList.jsx";
-import Therapist from "./pages/Therapist/Therapist.jsx";
 
+import {TherapistDashboard, Therapist, SessionFormList,SessionForm,TherapistProgressReportList, ProgressReport,IndividualSessionInformation } from "./pages/Therapist";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -113,6 +108,10 @@ const router = createBrowserRouter([
                 path: "session-form/:patientId",
                 element: <SessionForm />,
               },
+              {
+                path: "individual-session-information/:sessionId",
+                element: <IndividualSessionInformation />,
+              }
             ],
           },
         ],

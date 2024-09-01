@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 // const patient = {
 //   name: "Patient 1",
@@ -30,20 +30,20 @@ import axios from "axios";
 // };
 
 const SessionForm = () => {
+  const navigate = useNavigate();
   const id = useParams().patientId;
   const [patient, setPatient] = useState({});
   useEffect(() => {
     const getPatient = async () => {
       const response = await fetch(`http://localhost:5000/api/patient/get-patient/${id}`);
       const data = await response.json();
-      console.log(data);
       setPatient(data);
     };
     getPatient();
   }, [id]);
-
+  console.log(patient.therapy_sessions);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  console.log(selectedDate);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -59,11 +59,8 @@ const SessionForm = () => {
       mood: e.target.mood.value,
     };
     const session = await axios.post(`http://localhost:5000/api/session/add-session-for-patient/${id}`, data);
-    console.log(session);
     const session_id = session.data._id;
-    console.log('session_id', session_id);
     const patient = await axios.post(`http://localhost:5000/api/patient/add-new-session/${id}`, { session_id, });
-    console.log(patient.data);
   };
   return (
     <main className="flex-1 p-6 bg-gray-900 text-white">
@@ -83,28 +80,27 @@ const SessionForm = () => {
               <strong>Problem:</strong> {patient.condition}
             </p>
             <p>
-              <strong>Date:</strong> { patient.createdAt? patient.createdAt.split("T")[0]: new Date().toISOString().split("T")[0] }
+              <strong>Date:</strong>{" "}
+              {patient.createdAt
+                ? patient.createdAt.split("T")[0]
+                : new Date().toISOString().split("T")[0]}
             </p>
           </div>
         </div>
 
         <div className="bg-gray-800 shadow rounded-lg p-4">
-          {/* <h2 className="text-xl font-semibold mb-4">Previous Sessions</h2>
-          {patient.sessions.map((session, index) => (
-            <details key={index} className="mb-4">
-              <summary className="cursor-pointer font-medium text-blue-400 hover:text-blue-300">
-                {session.session} - {session.date}
-              </summary>
-              <div className="mt-2 pl-4">
-                {session.conversation.map((entry, idx) => (
-                  <div key={idx} className="mb-2">
-                    <p className="font-semibold">{entry.question}</p>
-                    <p className="pl-4 text-gray-300">{entry.answer}</p>
-                  </div>
-                ))}
-              </div>
-            </details>
-          ))} */}
+          <h2 className="text-xl font-semibold mb-4">Previous Sessions</h2>
+          {patient.therapy_sessions && patient.therapy_sessions.length > 0 ? (
+            patient.therapy_sessions.map((session_id, index) => (
+              <Link to={`http://localhost:5173/therapist/workspace/individual-session-information/${session_id}`} className="mb-4 cursor-pointer font-medium block text-blue-400 hover:text-blue-300 "
+              key={index}>
+                Session {index + 1} 
+              </Link>
+            ))
+          ) : (
+            <h1>No sessions found</h1>
+          )} 
+
 
           <form
             onSubmit={handleSubmit}
