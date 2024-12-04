@@ -46,7 +46,7 @@ const PendingPlans = () => {
   }, []);
 
   return (
-    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-[90%] text-white">
+    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-full text-white">
       <h2 className="text-2xl font-bold mb-4">Therapy Plans Pending Approval</h2>
 
       {/* Data Table */}
@@ -79,7 +79,7 @@ const PendingPlans = () => {
       <div className="bg-[#2A2B3D] shadow-md rounded p-4">
         <h3 className="text-xl font-bold mb-4">Pending vs Approved Plans</h3>
         <div className="flex justify-center">
-          <canvas ref={chartRef} style={{ width: '300px', height: '300px' }}></canvas>
+          <canvas ref={chartRef} style={{ width: '150px', height: '150px' }}></canvas>
         </div>
       </div>
     </div>

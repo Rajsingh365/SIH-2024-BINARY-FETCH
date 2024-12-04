@@ -72,7 +72,7 @@ const optionLine={
 }
 const ProgressReports = () => {
   return (
-    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-[90%]">
+    <div className="bg-[#21222D] p-6 py-10 rounded-lg mx-5 w-full">
       <h2 className="text-2xl font-bold mb-4 text-white">Progress Reports Overview</h2>
 
       {/* Data Table */}
@@ -104,7 +104,7 @@ const ProgressReports = () => {
       {/* Line Graph */}
       <div className="bg-gray-800 shadow-md rounded p-4">
         <h3 className="text-xl font-bold mb-4 text-white">Progress Report Submissions and Evaluations</h3>
-        <Line data={generateLineChartData()} options={optionLine} />
+        <Line data={generateLineChartData()} options={optionLine} height={'50px'}/>
       </div>
     </div>
   );
